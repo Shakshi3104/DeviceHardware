@@ -1,39 +1,41 @@
 import Foundation
 
 public class UIDeviceHardware: DeviceHardware {
-    var modelName: String {
+    public static let deviceHardware = UIDeviceHardware()
+    
+    public var modelName: String {
         ""
     }
     
-    var processorName: String {
+    public var processorName: String {
         ""
     }
     
-    var cpu: String {
+    public var cpu: String {
         ""
     }
     
-    var gpu: String {
+    public var gpu: String {
         ""
     }
     
-    var neuralEngine: String {
+    public var neuralEngine: String {
         ""
     }
     
-    var modelIdentifier: String {
+    public var modelIdentifier: String {
         ""
     }
     
-    var processorCount: Int {
+    public var processorCount: Int {
         return ProcessInfo.processInfo.processorCount
     }
     
-    var ram: Int {
+    public var ram: Int {
         return getRAM()
     }
     
-    var ramString: String {
+    public var ramString: String {
         return getRAMString()
     }
     
