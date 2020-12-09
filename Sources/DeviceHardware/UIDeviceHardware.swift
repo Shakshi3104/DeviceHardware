@@ -4,27 +4,33 @@ public class UIDeviceHardware: DeviceHardware {
     public static let deviceHardware = UIDeviceHardware()
     
     public var modelName: String {
-        ""
+        let modelName = getModelName() ?? "Unknown"
+        return modelName
     }
     
     public var processorName: String {
-        ""
+        let processorName = getProcessorName() ?? "Unknown"
+        return processorName
     }
     
     public var cpu: String {
-        ""
+        let cpu_ = getCpu() ?? "Unknown"
+        return cpu_
     }
     
     public var gpu: String {
-        ""
+        let gpu_ = getGpu() ?? "Unknown"
+        return gpu_
     }
     
     public var neuralEngine: String {
-        ""
+        let neuralEngine_ = getNeuralEngine() ?? "Unknown"
+        return neuralEngine_
     }
     
     public var modelIdentifier: String {
-        ""
+        let modelId = getModelIdentifier() ?? "Unknown"
+        return modelId
     }
     
     public var processorCount: Int {
@@ -39,6 +45,85 @@ public class UIDeviceHardware: DeviceHardware {
         return getRAMString()
     }
     
+    // MARK: -
+    private func getModelIdentifier() -> String? {
+        var size: Int = 0
+        sysctlbyname("hw.machine", nil, &size, nil, 0)
+        var machine = [CChar](repeating: 0, count: Int(size))
+        if sysctlbyname("hw.machine", &machine, &size, nil, 0) != 0 {
+            return nil
+        }
+        let code: String = String(cString:machine)
+        
+        return code
+    }
+    
+    private func getModelName() -> String? {
+        guard let id = getModelIdentifier() else {
+            return nil
+        }
+        
+        guard let modelId = ModelIdentifier(rawValue: id) else {
+            return nil
+        }
+        
+        return modelId.modelName()
+    }
+    
+    private func getProcessorName() -> String? {
+        guard let id = getModelIdentifier() else {
+            return nil
+        }
+        
+        guard let modelId = ModelIdentifier(rawValue: id) else {
+            return nil
+        }
+        
+        return modelId.processorName()
+    }
+    
+    private func getCpu() -> String? {
+        guard let id = getModelIdentifier() else {
+            return nil
+        }
+        
+        guard let modelId = ModelIdentifier(rawValue: id) else {
+            return nil
+        }
+        
+        return modelId.cpu()
+    }
+    
+    private func getGpu() -> String? {
+        if #available(OSX 10.11, iOS 8.0, macCatalyst 13.0, *) {
+            return getMetalGpu()
+        } else {
+            // Fallback on earlier versions
+            guard let id = getModelIdentifier() else {
+                return nil
+            }
+            
+            guard let modelId = ModelIdentifier(rawValue: id) else {
+                return nil
+            }
+            
+            return modelId.gpu()
+        }
+    }
+    
+    private func getNeuralEngine() -> String? {
+        guard let id = getModelIdentifier() else {
+            return nil
+        }
+        
+        guard let modelId = ModelIdentifier(rawValue: id) else {
+            return nil
+        }
+        
+        return modelId.neuralEngine()
+    }
+    
+    // MARK: -
     enum ModelIdentifier: String {
         // MARK: Simulator
         case i386
@@ -392,6 +477,258 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPad (8th generation)"
             case .iPad13_1, .iPad13_2:
                 return "iPad Air (4th generation)"
+            }
+        }
+            
+            // Processor (SoC) Name
+        func processorName() -> String {
+            switch self {
+            /// Simulator
+            case .i386, .x86_64:
+                return "N/A"
+            /// iPhone, iPod touch (1st), iPhone 3G
+            case .iPod1_1, .iPhone1_1, .iPhone1_2:
+                return "APL0098"
+            /// iPod touch (2nd)
+            case .iPod2_1:
+                return "APL0278"
+            /// iPhone 3GS
+            case .iPhone2_1:
+                return "APL0298"
+            /// iPod touch (3rd)
+            case .iPod3_1:
+                return "APL2298"
+            /// iPhone 4, iPad (1st), iPod touch (4th)
+            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1:
+                return "Apple A4"
+            /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
+            case .iPhone4_1, .iPod5_1, .iPad2_5, .iPad2_6, .iPad2_7, .iPad2_1, .iPad2_2, .iPad2_3, .iPad2_4:
+                return "Apple A5"
+            /// iPad (3rd)
+            case .iPad3_1, .iPad3_2, .iPad3_3:
+                return "Apple A5X"
+            /// iPhone 5, iPhone 5c
+            case .iPhone5_1, .iPhone5_2, .iPhone5_3, .iPhone5_4:
+                return "Apple A6"
+            /// iPad (4th)
+            case .iPad3_4, .iPad3_5, .iPad3_6:
+                return "Apple A6X"
+            /// iPhone 5s, iPad mini 2, iPad mini 3, iPad Air (1st)
+            case .iPhone6_1, .iPhone6_2, .iPad4_4, .iPad4_5, .iPad4_6, .iPad4_7, .iPad4_8, .iPad4_9, .iPad4_1, .iPad4_2, .iPad4_3:
+                return "Apple A7"
+            /// iPhone 6/6 Plus, iPod touch (6th), iPad mini 4
+            case .iPhone7_1, .iPhone7_2, .iPod7_1, .iPad5_1, .iPad5_2:
+                return "Apple A8"
+            /// iPad Air (2nd)
+            case .iPad5_4, .iPad5_3:
+                return "Apple A8X"
+            /// iPhone 6s/6s Plus, iPhone SE (1st), iPad (5th)
+            case .iPhone8_1, .iPhone8_2, .iPhone8_4, .iPad6_11, .iPad6_12:
+                return "Apple A9"
+            /// iPad Pro (1st)
+            case .iPad6_3, .iPad6_4, .iPad6_7, .iPad6_8:
+                return "Apple A9X"
+            /// iPhone 7/7 Plus, iPad (6th), iPod touch (7th), iPad (7th)
+            case .iPhone9_1, .iPhone9_2, .iPhone9_3, .iPhone9_4, .iPad7_5, .iPad7_6, .iPod9_1, .iPad7_11, .iPad7_12:
+                return "Apple A10 Fusion"
+            /// iPad Pro (2nd)
+            case .iPad7_1, .iPad7_2, .iPad7_3, .iPad7_4:
+                return "Apple A10X Fusion"
+            /// iPhone 8/8 Plus, iPhone X
+            case .iPhone10_1, .iPhone10_2, .iPhone10_3, .iPhone10_4, .iPhone10_5, .iPhone10_6:
+                return "Apple A11 Bionic"
+            /// iPhone XS/XS Max, iPhone XR, iPad Air (3rd), iPad mini (5th), iPad (8th)
+            case .iPhone11_2, .iPhone11_4, .iPhone11_6, .iPhone11_8, .iPad11_3, .iPad11_4, .iPad11_1, .iPad11_2, .iPad11_6, .iPad11_7:
+                return "Apple A12 Bionic"
+            /// iPad Pro (3rd)
+            case .iPad8_1, .iPad8_2, .iPad8_3, .iPad8_4, .iPad8_5, .iPad8_6, .iPad8_7, .iPad8_8:
+                return "Apple A12X Bionic"
+            /// iPad Pro (4th)
+            case .iPad8_9, .iPad8_10, .iPad8_11, .iPad8_12:
+                return "Apple A12Z Bionic"
+            /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd)
+            case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8:
+                return "Apple A13 Bionic"
+            /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+                return "Apple A14 Bionic"
+            }
+        }
+        
+        
+        // CPU Information
+        func cpu() -> String {
+            switch self {
+             /// Simulator
+            case .i386, .x86_64:
+                return "N/A"
+             /// iPhone, iPod touch (1st), iPhone 3G
+            case .iPod1_1, .iPhone1_1, .iPhone1_2:
+                return "412MHz 1-core"
+             /// iPod touch (2nd)
+            case .iPod2_1:
+                return "533MHz 1-core"
+             /// iPhone 3GS
+            case .iPhone2_1:
+                return "600MHz 1-core"
+             /// iPod touch (3rd)
+            case .iPod3_1:
+                return "800MHz 1-core"
+             /// iPhone 4, iPad (1st), iPod touch (4th)
+            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1:
+                return "1.0GHz 1-core"
+             /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
+            case .iPhone4_1, .iPod5_1, .iPad2_5, .iPad2_6, .iPad2_7, .iPad2_1, .iPad2_2, .iPad2_3, .iPad2_4:
+                return "1.0GHz 2-core"
+             /// iPad (3rd)
+            case .iPad3_1, .iPad3_2, .iPad3_3:
+                return "1.0GHz 2-core"
+             /// iPhone 5, iPhone 5c
+            case .iPhone5_1, .iPhone5_2, .iPhone5_3, .iPhone5_4:
+                return "1.3GHz 2-core"
+             /// iPad (4th)
+            case .iPad3_4, .iPad3_5, .iPad3_6:
+                return "1.4GHz 2-core"
+             /// iPhone 5s, iPad mini 2, iPad mini 3
+            case .iPhone6_1, .iPhone6_2, .iPad4_4, .iPad4_5, .iPad4_6, .iPad4_7, .iPad4_8, .iPad4_9:
+                return "1.3GHz 2-core"
+                /// iPad Air (1st)
+            case .iPad4_1, .iPad4_2, .iPad4_3:
+                return "1.4GHz 2-core"
+             /// iPhone 6/6 Plus, iPod touch (6th), iPad mini 4
+            case .iPhone7_1, .iPhone7_2, .iPod7_1, .iPad5_1, .iPad5_2:
+                return "1.5GHz 2-core"
+             /// iPad Air (2nd)
+            case .iPad5_4, .iPad5_3:
+                return "1.5GHz 3-core"
+             /// iPhone 6s/6s Plus, iPhone SE (1st), iPad (5th)
+            case .iPhone8_1, .iPhone8_2, .iPhone8_4, .iPad6_11, .iPad6_12:
+                return "1.85GHz 2-core"
+             /// iPad Pro (1st)
+            case .iPad6_3, .iPad6_4, .iPad6_7, .iPad6_8:
+                return "2.26GHz 2-core"
+             /// iPhone 7/7 Plus, iPad (6th), iPod touch (7th), iPad (7th)
+            case .iPhone9_1, .iPhone9_2, .iPhone9_3, .iPhone9_4, .iPad7_5, .iPad7_6, .iPod9_1, .iPad7_11, .iPad7_12:
+                return "2.34GHz 4-core"
+             /// iPad Pro (2nd)
+            case .iPad7_1, .iPad7_2, .iPad7_3, .iPad7_4:
+                return "2.36GHz 6-core"
+             /// iPhone 8/8 Plus, iPhone X
+            case .iPhone10_1, .iPhone10_2, .iPhone10_3, .iPhone10_4, .iPhone10_5, .iPhone10_6:
+                return "2.39GHz 6-core"
+             /// iPhone XS/XS Max, iPhone XR, iPad Air (3rd), iPad mini (5th), iPad (8th)
+            case .iPhone11_2, .iPhone11_4, .iPhone11_6, .iPhone11_8, .iPad11_3, .iPad11_4, .iPad11_1, .iPad11_2, .iPad11_6, .iPad11_7:
+                return "2.49 GHz 6-core"
+             /// iPad Pro (3rd), iPad Pro (4th)
+            case .iPad8_1, .iPad8_2, .iPad8_3, .iPad8_4, .iPad8_5, .iPad8_6, .iPad8_7, .iPad8_8, .iPad8_9, .iPad8_10, .iPad8_11, .iPad8_12:
+                return "2.49GHz 8-core"
+             /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd)
+            case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8:
+                return "2.65GHz 6-core"
+             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+                return "2.99GHz 6-core"
+            }
+        }
+        
+        // GPU Information
+        func gpu() -> String {
+            switch self {
+             /// Simulator
+            case .i386, .x86_64:
+                return "N/A"
+             /// iPhone, iPod touch (1st), iPhone 3G
+            case .iPod1_1, .iPhone1_1, .iPhone1_2:
+                return "PowerVR MBX Lite"
+             /// iPod touch (2nd)
+            case .iPod2_1:
+                return "PowerVR MBX Lite"
+             /// iPhone 3GS
+            case .iPhone2_1:
+                return "PowerVR SGX535"
+             /// iPod touch (3rd)
+            case .iPod3_1:
+                return "PowerVR SGX535"
+             /// iPhone 4, iPad (1st), iPod touch (4th)
+            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1:
+                return "PowerVR SGX535"
+             /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
+            case .iPhone4_1, .iPod5_1, .iPad2_5, .iPad2_6, .iPad2_7, .iPad2_1, .iPad2_2, .iPad2_3, .iPad2_4:
+                return "PowerVR SGX543MP2 2-core"
+             /// iPad (3rd)
+            case .iPad3_1, .iPad3_2, .iPad3_3:
+                return "PowerVR SGX554MP4 4-core"
+             /// iPhone 5, iPhone 5c
+            case .iPhone5_1, .iPhone5_2, .iPhone5_3, .iPhone5_4:
+                return "PowerVR SGX543MP3 3-core"
+             /// iPad (4th)
+            case .iPad3_4, .iPad3_5, .iPad3_6:
+                return "PowerVR SGX554MP4 4-core"
+             /// iPhone 5s, iPad mini 2, iPad mini 3, iPad Air (1st)
+            case .iPhone6_1, .iPhone6_2, .iPad4_4, .iPad4_5, .iPad4_6, .iPad4_7, .iPad4_8, .iPad4_9, .iPad4_1, .iPad4_2, .iPad4_3:
+                return "PowerVR G6430 4-core"
+             /// iPhone 6/6 Plus, iPod touch (6th), iPad mini 4
+            case .iPhone7_1, .iPhone7_2, .iPod7_1, .iPad5_1, .iPad5_2:
+                return "PowerVR GXA6450 4-core"
+             /// iPad Air (2nd)
+            case .iPad5_4, .iPad5_3:
+                return "PowerVR GXA6850 8-core"
+             /// iPhone 6s/6s Plus, iPhone SE (1st), iPad (5th)
+            case .iPhone8_1, .iPhone8_2, .iPhone8_4, .iPad6_11, .iPad6_12:
+                return "PowerVR GT7600 6-core"
+             /// iPad Pro (1st)
+            case .iPad6_3, .iPad6_4, .iPad6_7, .iPad6_8:
+                return "PowerVR GTA7850 12-core"
+             /// iPhone 7/7 Plus, iPad (6th), iPod touch (7th), iPad (7th)
+            case .iPhone9_1, .iPhone9_2, .iPhone9_3, .iPhone9_4, .iPad7_5, .iPad7_6, .iPod9_1, .iPad7_11, .iPad7_12:
+                return "PowerVR GT7600 Plus 6-core"
+             /// iPad Pro (2nd)
+            case .iPad7_1, .iPad7_2, .iPad7_3, .iPad7_4:
+                return "PowerVR GT7600 Plus 12-core"
+             /// iPhone 8/8 Plus, iPhone X
+            case .iPhone10_1, .iPhone10_2, .iPhone10_3, .iPhone10_4, .iPhone10_5, .iPhone10_6:
+                return "3-core"
+             /// iPhone XS/XS Max, iPhone XR, iPad Air (3rd), iPad mini (5th), iPad (8th)
+            case .iPhone11_2, .iPhone11_4, .iPhone11_6, .iPhone11_8, .iPad11_3, .iPad11_4, .iPad11_1, .iPad11_2, .iPad11_6, .iPad11_7:
+                return "4-core"
+             /// iPad Pro (3rd)
+            case .iPad8_1, .iPad8_2, .iPad8_3, .iPad8_4, .iPad8_5, .iPad8_6, .iPad8_7, .iPad8_8:
+                return "7-core"
+             /// iPad Pro (4th)
+            case .iPad8_9, .iPad8_10, .iPad8_11, .iPad8_12:
+                return "8-core"
+             /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd)
+            case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8:
+                return "4-core"
+             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+                return "4-core"
+            }
+        }
+        
+        // Neural Engine Information
+        func neuralEngine() -> String {
+            switch self {
+            /// Simulator
+            case .i386, .x86_64:
+                return "N/A"
+            case .iPhone10_1, .iPhone10_2, .iPhone10_3, .iPhone10_4, .iPhone10_5, .iPhone10_6:
+                return "2-core"
+             /// iPhone XS/XS Max, iPhone XR, iPad Air (3rd), iPad mini (5th), iPad (8th)
+            case .iPhone11_2, .iPhone11_4, .iPhone11_6, .iPhone11_8, .iPad11_3, .iPad11_4, .iPad11_1, .iPad11_2, .iPad11_6, .iPad11_7:
+                return "8-core"
+             /// iPad Pro (3rd), iPad Pro (4th)
+            case .iPad8_1, .iPad8_2, .iPad8_3, .iPad8_4, .iPad8_5, .iPad8_6, .iPad8_7, .iPad8_8, .iPad8_9, .iPad8_10, .iPad8_11, .iPad8_12:
+                return "8-core"
+             /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd)
+            case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8:
+                return "8-core"
+             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+                return "16-core"
+             /// Other device
+            default:
+                return "None"
             }
         }
     }

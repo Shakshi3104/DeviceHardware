@@ -25,7 +25,7 @@ protocol DeviceHardware {
 }
 
 extension DeviceHardware {
-    func getGPU() -> String {
+    func getMetalGpu() -> String {
         if #available(OSX 10.11, iOS 8.0, macCatalyst 13.0, *) {
             guard let device = MTLCreateSystemDefaultDevice() else {
                 return "Unknown"
@@ -36,8 +36,6 @@ extension DeviceHardware {
             // Not support Metal
             return "Not support Metal"
         }
-        
-        
     }
     
     func getRAM() -> Int {
