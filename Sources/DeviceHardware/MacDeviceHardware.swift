@@ -52,6 +52,22 @@ public class MacDeviceHardware: DeviceHardware {
         return code
     }
     
+    private func getCpuBrandString() -> String? {
+        var size: Int = 0
+        sysctlbyname("machdep.cpu.brand_string", nil, &size, nil, 0)
+        var machine = [CChar](repeating: 0, count: Int(size))
+        if sysctlbyname("machdep.cpu.brand_string", &machine, &size, nil, 0) != 0 {
+            return nil
+        }
+        let cpuInfo: String = String(cString:machine)
+       
+        return cpuInfo
+    }
+    
+    private func generateIntelCPUString(number: String, frequency: String) -> String {
+        return "Intel(R) Core(TM) \(number) CPU @ \(frequency)"
+    }
+    
     private func getModelName() -> String? {
         guard let id = getModelIdentifier() else {
             return nil
@@ -61,24 +77,85 @@ public class MacDeviceHardware: DeviceHardware {
             return nil
         }
         
+        let cpuString = getCpuBrandString() ?? ""
+        
         // same model identifier model
         switch modelId {
         case .MacBookAir7_2:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i5-5350U", frequency: "1.80GHz"):
+                return "MacBook Air (13-inch, 2017)"
+            case generateIntelCPUString(number: "i5-5250U", frequency: "1.60GHz"):
+                return "MacBook Air (13-inch, Early 2015)"
+            default:
+                // Core i7-5650U or other CPU
+                return "MacBook Air (13-inch, Early 2017)"
+            }
         case .MacBookAir6_2:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i5-4260U", frequency: "1.40GHz"):
+                return "MacBook Air (13-inch, Early 2014)"
+            case generateIntelCPUString(number: "i5-4250U", frequency: "1.30GHz"):
+                return "MacBook Air (13-inch, Mid 2013)"
+            default:
+                // Core i7-4650U or other CPU
+                return "MacBook Air (13-inch, Early 2014)"
+            }
         case .MacBookAir6_1:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i5-4260U", frequency: "1.40GHz"):
+                return "MacBook Air (11-inch, Early 2014)"
+            case generateIntelCPUString(number: "i5-4250U", frequency: "1.30GHz"):
+                return "MacBook Air (11-inch, Mid 2013)"
+            default:
+                // Core i7-4650U or other CPU
+                return "MacBook Air (11-inch, Early 2014)"
+            }
         case .MacBookPro15_1:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i7-9750H", frequency: "2.60GHz"), generateIntelCPUString(number: "i9-9880H", frequency: "2.30GHz"), generateIntelCPUString(number: "i9-9980HK", frequency: "2.40GHz"):
+                return "MacBook Pro (15-inch, 2019)"
+            case generateIntelCPUString(number: "i7-8750H", frequency: "2.20GHz"), generateIntelCPUString(number: "i7-8850H", frequency: "2.60GHz"), generateIntelCPUString(number: "i9-8950HK", frequency: "2.90GHz"):
+                return "MacBook Pro (15-inch, 2018)"
+            default:
+                return "MacBook Pro (15-inch, 2019)"
+            }
         case .MacBookPro15_2:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i5-8279U", frequency: "2.40GHz"), generateIntelCPUString(number: "i7-8569U", frequency: "2.80GHz"):
+                return "MacBook Pro (13-inch, 2019, Four Thunderbolt 3 ports)"
+            case generateIntelCPUString(number: "i5-8259U", frequency: "2.30GHz"), generateIntelCPUString(number: "i7-8559U", frequency: "2.70GHz"):
+                return "MacBook Pro (13-inch, 2018, Four Thunderbolt 3 ports)"
+            default:
+                return "MacBook Pro (13-inch, 2019, Four Thunderbolt 3 ports)"
+            }
         case .MacBookPro11_3, .MacBookPro11_2:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i7-4770HQ", frequency: "2.20GHz"), generateIntelCPUString(number: "i7-4870HQ", frequency: "2.50GHz"), generateIntelCPUString(number: "i7-4980HQ", frequency: "2.80GHz"):
+                return "MacBook Pro (Retina, 15-inch, Mid 2014)"
+            case generateIntelCPUString(number: "i7-4750HQ", frequency: "2.00GHz"), generateIntelCPUString(number: "i7-4850HQ", frequency: "2.30GHz"), generateIntelCPUString(number: "i7-4960HQ", frequency: "2.60GHz"):
+                return "MacBook Pro (Retina, 15-inch, Late 2013)"
+            default:
+                return "MacBook Pro (Retina, 15-inch, Mid 2014)"
+            }
         case .MacBookPro11_1:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i5-4278U", frequency: "2.60GHz"), generateIntelCPUString(number: "i5-4308U", frequency: "2.80GHz"), generateIntelCPUString(number: "i7-4578U", frequency: "3.00GHz"):
+                return "MacBook Pro (Retina, 13-inch, Mid 2014)"
+            case generateIntelCPUString(number: "i5-4258U", frequency: "2.40GHz"), generateIntelCPUString(number: "i5-4288U", frequency: "2.60GHz"), generateIntelCPUString(number: "i7-4558U", frequency: "3.00GHz"):
+                return "MacBook Pro (Retina, 13-inch, Late 2013)"
+            default:
+                return "MacBook Pro (Retina, 13-inch, Mid 2014)"
+            }
         case .iMac15_1:
-            return ""
+            switch cpuString {
+            case generateIntelCPUString(number: "i5-4590", frequency: "3.30GHz"):
+                return "iMac (Retina 5K, 27-inch, Mid 2015)"
+            case generateIntelCPUString(number: "i5-4690", frequency: "3.50GHz"), generateIntelCPUString(number: "i7-4790K", frequency: "4.00GHz"):
+                return "iMac (Retina 5K, 27-inch, Late 2014)"
+            default:
+                return "iMac (Retina 5K, 27-inch, Mid 2015)"
+            }
         default:
             // other model
             return modelId.modelName()
