@@ -5,6 +5,7 @@ final class DeviceHardwareTests: XCTestCase {
     
     func testModelIdentifier() {
         XCTAssertEqual(MacDeviceHardware.deviceHardware.modelIdentifier, "MacBookAir7,2")
+        XCTAssertEqual(UIDeviceHardware.deviceHardware.modelIdentifier, "x86_64")
     }
     
     func testModelName() {
