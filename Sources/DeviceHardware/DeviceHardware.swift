@@ -30,7 +30,11 @@ extension DeviceHardware {
             guard let device = MTLCreateSystemDefaultDevice() else {
                 return "Unknown"
             }
-            return device.name
+            
+            let deviceName = device.name
+                .replacingOccurrences(of: "(R)", with: "")
+                .replacingOccurrences(of: "(TM)", with: "")
+            return deviceName
         } else {
             // Fallback on earlier versions
             // Not support Metal
