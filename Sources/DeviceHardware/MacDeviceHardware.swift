@@ -4,31 +4,36 @@ public class MacDeviceHardware: DeviceHardware {
     public static let deviceHardware = MacDeviceHardware()
     
     public var modelName: String {
-        return ""
+        let modelName_ = getModelName() ?? "Unknown"
+        return modelName_
     }
     
     public var processorName: String {
-        return ""
+        let processorName_ = getProcessorName() ?? "Unknown"
+        return processorName_
     }
     
     public var cpu: String {
-        return ""
+        let cpu_ = getCpu() ?? "Unknown"
+        return cpu_
     }
     
     public var gpu: String {
-        return ""
+        return getMetalGpu()
     }
     
     public var neuralEngine: String {
-        return ""
+        let neuralEngine_ = getNeuralEngine() ?? "Unknown"
+        return neuralEngine_
     }
     
     public var modelIdentifier: String {
-        return ""
+        let modelId = getModelIdentifier() ?? "Unknown"
+        return modelId
     }
     
     public var processorCount: Int {
-        return -1
+        return ProcessInfo.processInfo.processorCount
     }
     
     public var ram: Int {
@@ -160,6 +165,59 @@ public class MacDeviceHardware: DeviceHardware {
             // other model
             return modelId.modelName()
         }
+    }
+    
+    private func getProcessorName() -> String? {
+        guard let cpuInfo = getCpuBrandString() else {
+            return nil
+        }
+        
+        let cpuInfoArray = cpuInfo.split(separator: "@")
+        let cpuBrand = cpuInfoArray[0]
+            .replacingOccurrences(of: "CPU", with: "")
+            .replacingOccurrences(of: "(R)", with: "")
+            .replacingOccurrences(of: "(TM)", with: "")
+            .trimmingCharacters(in: .whitespaces)
+        
+        return cpuBrand
+    }
+    
+    private func getPhysicalCore() -> Int? {
+        var core: Int32 = 0
+        var size = MemoryLayout<Int32>.size
+        
+        if sysctlbyname("hw.physicalcpu", &core, &size, nil, 0) != 0 {
+            return nil
+        }
+        
+        return Int(core)
+    }
+    
+    private func getCpu() -> String? {
+        guard let cpuInfo = getCpuBrandString() else {
+            return nil
+        }
+        
+        let cpuInfoArray = cpuInfo.split(separator: "@")
+        let cpuFrequency = cpuInfoArray[1].trimmingCharacters(in: .whitespaces)
+        
+        guard let core = getPhysicalCore() else {
+            return nil
+        }
+        
+        return "\(cpuFrequency) \(core)-core"
+    }
+    
+    private func getNeuralEngine() -> String? {
+        guard let id = getModelIdentifier() else {
+            return nil
+        }
+        
+        guard let modelId = ModelIdentifier(rawValue: id) else {
+            return nil
+        }
+        
+        return modelId.neuralEngine()
     }
     
     // MARK: -
@@ -310,10 +368,10 @@ public class MacDeviceHardware: DeviceHardware {
            case .MacBookAir7_1:
                return "MacBook Air (11-inch, Early 2015)"
            case .MacBookAir6_2:
-               /// 何かしらの判定処理が必要
+               /// Need some decision processing
                return "MacBook Air (13-inch, Early 2014) / (13-inch, Mid 2013)"
            case .MacBookAir6_1:
-               /// 何かしらの判定処理が必要
+               /// Need some decision processing
                return "MacBook Air (11-inch, Early 2014) / (11-inch, Mid 2013)"
            
            // MARK: MacBook Pro
@@ -330,10 +388,10 @@ public class MacDeviceHardware: DeviceHardware {
            case .MacBookPro15_3:
                return "MacBook Pro (15-inch, 2019)"
            case .MacBookPro15_1:
-               /// 何らかの判定処理が必要
+               /// Need some decision processing
                return "MacBook Pro (15-inch, 2019) / (15-inch, 2018)"
            case .MacBookPro15_2:
-               /// 何らかの判定処理が必要
+               /// Need some decision processing
                return "MacBook Pro (13-inch, 2019, Four Thunderbolt 3 ports) / (13-inch, 2018, Four Thunderbolt 3 ports)"
            case .MacBookPro14_3:
                return "MacBook Pro (15-inch, 2017)"
@@ -352,10 +410,10 @@ public class MacDeviceHardware: DeviceHardware {
            case .MacBookPro12_1:
                return "MacBook Pro (Retina, 13-inch, Early 2015)"
            case .MacBookPro11_3, .MacBookPro11_2:
-               /// 何かしらの判定処理が必要
+               /// Need some decision processing
                return "MacBook Pro (Retina, 15-inch, Mid 2014) / (Retina, 15-inch, Late 2013)"
            case .MacBookPro11_1:
-               /// 何かしらの判定処理が必要
+               /// Need some decision processing
                return "MacBook Pro (Retina, 13-inch, Mid 2014) / (Retina, 13-inch, Late 2013)"
                
            // MARK: MacBook (12-inch)
@@ -404,7 +462,7 @@ public class MacDeviceHardware: DeviceHardware {
            case .iMac16_1:
                return "iMac (21.5-inch, Late 2015)"
            case .iMac15_1:
-               /// 何らかの判定処理が必要
+               /// Need some decision processing
                return "iMac (Retina 5K, 27-inch, Mid 2015) / (Retina 5K, 27-inch, Late 2014)"
            case .iMac14_4:
                return "iMac (21.5-inch, Mid 2014)"

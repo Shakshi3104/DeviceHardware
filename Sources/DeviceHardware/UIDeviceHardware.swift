@@ -4,13 +4,13 @@ public class UIDeviceHardware: DeviceHardware {
     public static let deviceHardware = UIDeviceHardware()
     
     public var modelName: String {
-        let modelName = getModelName() ?? "Unknown"
-        return modelName
+        let modelName_ = getModelName() ?? "Unknown"
+        return modelName_
     }
     
     public var processorName: String {
-        let processorName = getProcessorName() ?? "Unknown"
-        return processorName
+        let processorName_ = getProcessorName() ?? "Unknown"
+        return processorName_
     }
     
     public var cpu: String {
