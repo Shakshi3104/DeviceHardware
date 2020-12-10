@@ -3,43 +3,45 @@ import Foundation
 public class MacDeviceHardware: DeviceHardware {
     public static let deviceHardware = MacDeviceHardware()
     
+    /// model name, such as MacBook Air (Retina, 13-inch, 2020)
     public var modelName: String {
         let modelName_ = getModelName() ?? "Unknown"
         return modelName_
     }
-    
+    /// processor name, such as Intel Core i5-5250U
     public var processorName: String {
         let processorName_ = getProcessorName() ?? "Unknown"
         return processorName_
     }
-    
+    /// CPU information, such as 1.60GHz 2-core
     public var cpu: String {
         let cpu_ = getCpu() ?? "Unknown"
         return cpu_
     }
-    
+    /// GPU information, such as Intel Iris Plus Graphics 655
     public var gpu: String {
         return getMetalGpu()
     }
-    
+    /// Neural Engine, such as 16-core or None
     public var neuralEngine: String {
         let neuralEngine_ = getNeuralEngine() ?? "Unknown"
         return neuralEngine_
     }
     
+    /// Model Identifier, such as MacBookAir9,1
     public var modelIdentifier: String {
         let modelId = getModelIdentifier() ?? "Unknown"
         return modelId
     }
-    
+    /// number of (logical) processor, such as 4
     public var processorCount: Int {
         return ProcessInfo.processInfo.processorCount
     }
-    
+    /// physical memory size [B], such as 8589934592
     public var ram: Int {
         return getRAM()
     }
-    
+    /// physical memory size, such as 8GB
     public var ramString: String {
         return getRAMString()
     }

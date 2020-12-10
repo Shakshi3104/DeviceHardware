@@ -3,44 +3,46 @@ import Foundation
 public class UIDeviceHardware: DeviceHardware {
     public static let deviceHardware = UIDeviceHardware()
     
+    /// model name, such as iPhone 8
     public var modelName: String {
         let modelName_ = getModelName() ?? "Unknown"
         return modelName_
     }
-    
+    /// processor name, such as A11 Bionic
     public var processorName: String {
         let processorName_ = getProcessorName() ?? "Unknown"
         return processorName_
     }
-    
+    /// CPU information, such as 2.39GHz 6-core
     public var cpu: String {
         let cpu_ = getCpu() ?? "Unknown"
         return cpu_
     }
-    
+    /// GPU information, such as Apple A11 GPU
     public var gpu: String {
         let gpu_ = getGpu() ?? "Unknown"
         return gpu_
     }
-    
+    /// Neural Engine, such as 2-core
     public var neuralEngine: String {
         let neuralEngine_ = getNeuralEngine() ?? "Unknown"
         return neuralEngine_
     }
     
+    /// Model Identifier, such as iPhone10,1
     public var modelIdentifier: String {
         let modelId = getModelIdentifier() ?? "Unknown"
         return modelId
     }
-    
+    /// number of processor, such as 6
     public var processorCount: Int {
         return ProcessInfo.processInfo.processorCount
     }
-    
+    /// physical memory size [B], such as 2071019520
     public var ram: Int {
         return getRAM()
     }
-    
+    /// physical memory size, such as 2GB
     public var ramString: String {
         return getRAMString()
     }
