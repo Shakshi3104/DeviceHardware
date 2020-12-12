@@ -23,14 +23,14 @@ Eample on iPhone 8 running iOS 14.2
 
 ```swift
 device.modelName                  // iPhone 8
-device.processorName            // A11 Bionic
-device.cpu                                // 2.39GHz 6-core
-device.gpu                                // Apple A11 GPU
-device.neuralEngine                 // 2-core
-device.modelIdentifier               // iPhone10,1
+device.processorName              // A11 Bionic
+device.cpu                        // 2.39GHz 6-core
+device.gpu                        // Apple A11 GPU
+device.neuralEngine               // 2-core
+device.modelIdentifier            // iPhone10,1
 device.processorCount             // 6
-device.ram                                // 2071019520
-device.ramString                       // 2GB 
+device.ram                        // 2071019520
+device.ramString                  // 2GB 
 ```
 
 ## macOS
@@ -44,14 +44,14 @@ Eample on MacBook Pro (13-inch, 2018, Four Thunderbolt 3 ports) running macOS 11
 
 ```swift
 device.modelName                  // MacBook Pro (13-inch, 2018, Four Thunderbolt 3 ports)
-device.processorName            // Intel Core i5-8259U
-device.cpu                                // 2.30GHz 4-core
-device.gpu                                // Intel Iris Plus Graphics 655
-device.neuralEngine                 // None
-device.modelIdentifier               // MacBookPro15,2
+device.processorName              // Intel Core i5-8259U
+device.cpu                        // 2.30GHz 4-core
+device.gpu                        // Intel Iris Plus Graphics 655
+device.neuralEngine               // None
+device.modelIdentifier            // MacBookPro15,2
 device.processorCount             // 8
-device.ram                                // 17179869184
-device.ramString                       // 16GB
+device.ram                        // 17179869184
+device.ramString                  // 16GB
 ```
 
 ### Mac models that cannot get the correct model name
