@@ -12,7 +12,7 @@ Support for iOS devices and Macs by December 12, 2020 (JST)
 ```swift
 import DeviceHardware
 ```
-## iOS
+### iOS
 At first
 
 ```swift
@@ -33,7 +33,7 @@ device.ram                        // 2071019520
 device.ramString                  // 2GB 
 ```
 
-## macOS
+### macOS
 At first
 
 ```swift
