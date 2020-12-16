@@ -73,13 +73,21 @@ This package is compatible with iOS 8 or higher and macOS 10.15 or higher. Howev
 ### Swift Package Manager
 Add this Swift package in Xcode using its GitHub repository URL. (File > Swift Packages > Add Package Dependency...)
 
-### CocosPods
+### CocoaPods
+Add your Podfile:
 
-*Not supported yet*
+```
+pod 'DeviceHardware'
+```
 
-### Carthage
+then run below command in terminal:
 
-*Not supported yet*
+```bash
+pod install
+```
+
+[Page on CocoaPods.org](https://cocoapods.org/pods/DeviceHardware)
+
 
 ## License
 DeviceHardware is available under the MIT license. See the LICENSE file for more info.

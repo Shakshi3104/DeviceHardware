@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "DeviceHardware",
     platforms: [
-        .iOS(.v8),
+        .iOS(.v12),
         .macOS(.v10_15)
     ],
     products: [
