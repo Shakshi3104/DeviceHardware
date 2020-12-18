@@ -2,11 +2,8 @@
 
 DeviceHardware is a package for getting iPhone, iPad and Mac model names and hardware information, such as SoC name.
 
-## Version
+Support for iOS devices and Macs by December 12, 2020 (JST).
 
-0.9.0
-
-Support for iOS devices and Macs by December 12, 2020 (JST)
 
 ## Usage
 ```swift
