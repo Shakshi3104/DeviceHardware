@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "DeviceHardware"
-  spec.version      = "0.9.0"
+  spec.version      = "0.9.1"
   spec.summary      = "DeviceHardware is a package for getting iPhone, iPad and Mac model names and hardware information."
   spec.homepage     = "https://github.com/Shakshi3104/DeviceHardware"
 
