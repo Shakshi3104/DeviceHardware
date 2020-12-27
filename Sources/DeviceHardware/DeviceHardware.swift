@@ -48,33 +48,9 @@ extension DeviceHardware {
     
     func getRAMString() -> String {
         let bytes = getRAM()
-        var n = bytes
-        var prefix = 0
-        
-        // calc prefix
-        while(n != 0) {
-            n = n / 1024
-            prefix += 1
-        }
-        prefix -= 1
-        
-        let xBytes = Double(bytes) / Double(1024 ** prefix)
-        
-        // B to TB
-        switch prefix {
-        case 0:
-            return "\(Int(round(xBytes)))B"
-        case 1:
-            return "\(Int(round(xBytes)))kB"
-        case 2:
-            return "\(Int(round(xBytes)))MB"
-        case 3:
-            return "\(Int(round(xBytes)))GB"
-        case 4:
-            return "\(round(xBytes*10)/10)TB"
-        default:
-            return "\(bytes)B"
-        }
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .memory
+        return formatter.string(fromByteCount: Int64(bytes)).replacingOccurrences(of: " ", with: "")
     }
 }
 
