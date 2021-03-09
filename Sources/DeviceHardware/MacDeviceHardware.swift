@@ -196,18 +196,31 @@ public class MacDeviceHardware: DeviceHardware {
     }
     
     private func getCpu() -> String? {
-        guard let cpuInfo = getCpuBrandString() else {
+        guard let id = getModelIdentifier() else {
             return nil
         }
         
-        let cpuInfoArray = cpuInfo.split(separator: "@")
-        let cpuFrequency = cpuInfoArray[1].trimmingCharacters(in: .whitespaces)
-        
-        guard let core = getPhysicalCore() else {
+        guard let modelId = ModelIdentifier(rawValue: id) else {
             return nil
         }
         
-        return "\(cpuFrequency) \(core)-core"
+        guard let appleCpuInfo = modelId.appleSiliconCpu() else {
+            // Intel CPU Information
+            guard let cpuInfo = getCpuBrandString() else {
+                return nil
+            }
+            
+            let cpuInfoArray = cpuInfo.split(separator: "@")
+            let cpuFrequency = cpuInfoArray[1].trimmingCharacters(in: .whitespaces)
+            
+            guard let core = getPhysicalCore() else {
+                return nil
+            }
+            
+            return "\(cpuFrequency) \(core)-core"
+        }
+        
+        return appleCpuInfo
     }
     
     private func getNeuralEngine() -> String? {
@@ -341,6 +354,16 @@ public class MacDeviceHardware: DeviceHardware {
        case iMac13_2 = "iMac13,2"
        /// iMac (21.5-inch, Late 2012)
        case iMac13_1 = "iMac13,1"
+        
+        // Apple Silicon CPU Information
+        func appleSiliconCpu() -> String? {
+            switch self {
+            case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1:
+                return "3.2GHz 8-core"
+            default:
+                return nil
+            }
+        }
        
        // Neural Engine Information
        func neuralEngine() -> String {

@@ -130,6 +130,7 @@ public class UIDeviceHardware: DeviceHardware {
         // MARK: Simulator
         case i386
         case x86_64
+        case arm64
         // MARK: iPod
         /// iPod touch (1st Generation)
         case iPod1_1 = "iPod1,1"
@@ -355,7 +356,7 @@ public class UIDeviceHardware: DeviceHardware {
         /// model name
         func modelName() -> String {
             switch self {
-            case .i386, .x86_64:
+            case .i386, .x86_64, .arm64:
                 return "Simulator"
             case .iPod1_1:
                 return "iPod touch (1st generation)"
@@ -486,7 +487,7 @@ public class UIDeviceHardware: DeviceHardware {
         func processorName() -> String {
             switch self {
             /// Simulator
-            case .i386, .x86_64:
+            case .i386, .x86_64, .arm64:
                 return "N/A"
             /// iPhone, iPod touch (1st), iPhone 3G
             case .iPod1_1, .iPhone1_1, .iPhone1_2:
@@ -562,7 +563,7 @@ public class UIDeviceHardware: DeviceHardware {
         func cpu() -> String {
             switch self {
              /// Simulator
-            case .i386, .x86_64:
+            case .i386, .x86_64, .arm64:
                 return "N/A"
              /// iPhone, iPod touch (1st), iPhone 3G
             case .iPod1_1, .iPhone1_1, .iPhone1_2:
@@ -637,7 +638,7 @@ public class UIDeviceHardware: DeviceHardware {
         func gpu() -> String {
             switch self {
              /// Simulator
-            case .i386, .x86_64:
+            case .i386, .x86_64, .arm64:
                 return "N/A"
              /// iPhone, iPod touch (1st), iPhone 3G
             case .iPod1_1, .iPhone1_1, .iPhone1_2:
@@ -712,7 +713,7 @@ public class UIDeviceHardware: DeviceHardware {
         func neuralEngine() -> String {
             switch self {
             /// Simulator
-            case .i386, .x86_64:
+            case .i386, .x86_64, .arm64:
                 return "N/A"
             case .iPhone10_1, .iPhone10_2, .iPhone10_3, .iPhone10_4, .iPhone10_5, .iPhone10_6:
                 return "2-core"
