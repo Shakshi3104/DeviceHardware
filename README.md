@@ -51,7 +51,22 @@ device.ram                        // 17179869184
 device.ramString                  // 16GB
 ```
 
+Eample on MacBook Pro (13-inch, M1, 2020) running macOS 11.2.3
+
+```swift
+device.modelName                  // MacBook Pro (13-inch, M1, 2020)
+device.processorName              // Apple M1
+device.cpu                        // 3.2GHz 8-core
+device.gpu                        // Apple M1
+device.neuralEngine               // 16-core
+device.modelIdentifier            // MacBookPro17,1
+device.processorCount             // 8
+device.ram                        // 17179869184
+device.ramString                  // 16GB
+```
+
 ### Mac models that cannot get the correct model name
+
 Some Macs may not get the correct model name. The following models may not get the correct model name if they have been customized to Intel Core i7.
 
 - MacBook Air (13-inch, 2017)
