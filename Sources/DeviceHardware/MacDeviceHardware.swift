@@ -323,6 +323,9 @@ public class MacDeviceHardware: DeviceHardware {
        case iMacPro1_1 = "iMacPro1,1"
        
        // MARK: iMac
+       /// iMac (24-inch, M1, 2021)
+       case iMac21_1 = "iMac21,1"
+       case iMac21_2 = "iMac21,2"
        /// iMac (Retina 5K, 27-inch, 2020)
        case iMac20_2 = "iMac20,2"
        case iMac20_1 = "iMac20,1"
@@ -358,7 +361,7 @@ public class MacDeviceHardware: DeviceHardware {
         // Apple Silicon CPU Information
         func appleSiliconCpu() -> String? {
             switch self {
-            case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1:
+            case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2:
                 return "3.2GHz 8-core"
             default:
                 return nil
@@ -368,7 +371,7 @@ public class MacDeviceHardware: DeviceHardware {
        // Neural Engine Information
        func neuralEngine() -> String {
            switch self {
-           case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1:
+           case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2:
                return "16-core"
            default:
                return "None"
@@ -468,6 +471,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "iMac Pro"
                
            // MARK: iMac
+           case .iMac21_1, .iMac21_2:
+            return "iMac (24-inch, M1, 2021)"
            case .iMac20_2, .iMac20_1:
                return "iMac (Retina 5K, 27-inch, 2020)"
            case .iMac19_1:

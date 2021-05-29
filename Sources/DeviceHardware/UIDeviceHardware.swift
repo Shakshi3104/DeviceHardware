@@ -352,6 +352,16 @@ public class UIDeviceHardware: DeviceHardware {
         case iPad13_1 = "iPad13,1"
         /// iPad Air (4th generation) Cellular
         case iPad13_2 = "iPad13,2"
+        /// iPad Pro 11-inch (3rd generation)
+        case iPad13_4 = "iPad13,4"
+        case iPad13_5 = "iPad13,5"
+        case iPad13_6 = "iPad13,6"
+        case iPad13_7 = "iPad13,7"
+        /// iPad Pro 12.9-inch (5th generation)
+        case iPad13_8 = "iPad13,8"
+        case iPad13_9 = "iPad13,9"
+        case iPad13_10 = "iPad13,10"
+        case iPad13_11 = "iPad13,11"
         
         /// model name
         func modelName() -> String {
@@ -480,6 +490,10 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPad (8th generation)"
             case .iPad13_1, .iPad13_2:
                 return "iPad Air (4th generation)"
+            case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7:
+                return "iPad Pro (11-inch) (3rd generation)"
+            case .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11:
+                return "iPad Pro (12.9-inch) (5th generation)"
             }
         }
             
@@ -555,6 +569,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
             case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
                 return "Apple A14 Bionic"
+            /// iPad Pro (5th)
+            case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7, .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11:
+                return "Apple M1"
             }
         }
         
@@ -631,6 +648,9 @@ public class UIDeviceHardware: DeviceHardware {
              /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
             case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
                 return "2.99GHz 6-core"
+            /// iPad Pro (5th)
+            case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7, .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11:
+                return "3.2GHz 8-core"
             }
         }
         
@@ -706,6 +726,9 @@ public class UIDeviceHardware: DeviceHardware {
              /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
             case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
                 return "4-core"
+            /// iPad Pro (5th)
+            case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7, .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11:
+                return "8-core"
             }
         }
         
@@ -728,6 +751,9 @@ public class UIDeviceHardware: DeviceHardware {
                 return "8-core"
              /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
             case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+                return "16-core"
+            /// iPad Pro (5th)
+            case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7, .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11:
                 return "16-core"
              /// Other device
             default:
