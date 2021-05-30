@@ -53,12 +53,3 @@ extension DeviceHardware {
         return formatter.string(fromByteCount: Int64(bytes)).replacingOccurrences(of: " ", with: "")
     }
 }
-
-// Python-like power operator
-infix operator **: MultiplicationPrecedence
-
-extension Int {
-    static func **(number: Int, power: Int) -> Int {
-        return Int(pow(Double(number), Double(power)))
-    }
-}

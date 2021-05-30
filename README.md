@@ -20,14 +20,14 @@ Eample on iPhone 8 running iOS 14.2
 
 ```swift
 device.modelName                  // iPhone 8
-device.processorName              // A11 Bionic
+device.processorName              // Apple A11 Bionic
 device.cpu                        // 2.39GHz 6-core
 device.gpu                        // Apple A11 GPU
 device.neuralEngine               // 2-core
 device.modelIdentifier            // iPhone10,1
 device.processorCount             // 6
 device.ram                        // 2071019520
-device.ramString                  // 2GB 
+device.ramString                  // 1.93GB 
 ```
 
 ### macOS
