@@ -2,7 +2,8 @@ name: Deploy CocoaPods
 
 on:
   push:
-    tags: v*
+    tags:
+      - "*.*.*"
 
 jobs:
   build:
