@@ -2,14 +2,16 @@
 
 DeviceHardware is a package for getting iPhone, iPad and Mac model names and hardware information, such as SoC name.
 
-Support for iOS devices and Macs by May 29, 2021 (JST).
+Support for iOS devices and Macs by September 19, 2021 (JST).
 
 
 ## Usage
+
 ```swift
 import DeviceHardware
 ```
 ### iOS
+
 At first
 
 ```swift
@@ -31,6 +33,7 @@ device.ramString                  // 1.93GB
 ```
 
 ### macOS
+
 At first
 
 ```swift
@@ -67,7 +70,7 @@ device.ramString                  // 16GB
 
 ### Mac models that cannot get the correct model name
 
-Some Macs may not get the correct model name. The following models may not get the correct model name if they have been customized to Intel Core i7.
+You may not get the correct model name on some Macs. In the following models, you may not get the correct model name if the Mac have been customized to Intel Core i7.
 
 - MacBook Air (13-inch, 2017)
 - MacBook Air (13-inch, Early 2015)
@@ -86,6 +89,9 @@ This package is compatible with iOS 8 or higher and macOS 10.15 or higher. Howev
 Add this Swift package in Xcode using its GitHub repository URL. (File > Swift Packages > Add Package Dependency...)
 
 ### CocoaPods
+
+⚠️ In the next update (2.0.0), **this package will drop support for CocoaPods**.
+
 Add your Podfile:
 
 ```
