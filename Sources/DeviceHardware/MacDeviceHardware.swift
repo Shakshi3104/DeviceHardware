@@ -175,11 +175,17 @@ public class MacDeviceHardware: DeviceHardware {
         /// iMac (21.5-inch, Late 2012)
         case iMac13_1 = "iMac13,1"
         
+        // MARK: Mac Studio
+        /// Mac Studio (M1 Max)
+        case Mac13_1 = "Mac13,1"
+        /// Mac Studio (M1 Ultra)
+        case Mac13_2 = "Mac13,2"
+        
         // Whether is Apple Silicon Mac or not
         func isAppleSiliconMac() -> Bool {
             switch self {
             case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2,
-                    .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4:
+                    .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4, .Mac13_1, .Mac13_2:
                 return true
             default:
                 return false
@@ -189,8 +195,10 @@ public class MacDeviceHardware: DeviceHardware {
        // Neural Engine Information
        func neuralEngine() -> String {
            switch self {
-           case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2:
+           case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2, .Mac13_1:
                return "16-core"
+           case .Mac13_2:
+               return "32-core"
            default:
                return "None"
            }
@@ -326,6 +334,10 @@ public class MacDeviceHardware: DeviceHardware {
                return "iMac (27-inch, Late 2012)"
            case .iMac13_1:
                return "iMac (21.5-inch, Late 2012)"
+               
+           // MARK: Mac Studio
+           case .Mac13_1, .Mac13_2:
+               return "Mac Studio"
            }
        }
     }
@@ -498,14 +510,16 @@ public extension MacDeviceHardware {
             return nil
         }
         
+        // MARK: Apple silicon or not
         if modelId.isAppleSiliconMac() {
             guard let core = getPhysicalCore() else {
                 return nil
             }
             
             switch modelId {
+            /// M1 family
             case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2,
-                    .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4:
+                    .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4, .Mac13_1, .Mac13_2:
                 return "3.2GHz \(core)-core"
             default:
                 return nil
