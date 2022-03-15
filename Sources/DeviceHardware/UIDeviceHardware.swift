@@ -778,7 +778,7 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 13 Pro/13 Pro Max, iPad mini (6th)
             case .iPhone14_2, .iPhone14_3, .iPad14_2, .iPad14_1:
                 return "5-core"
-            /// iPhone 13/13 mini
+            /// iPhone 13/13 mini, iPhone SE (3rd)
             case .iPhone14_4, .iPhone14_5, .iPhone14_6:
                 return "4-core"
             }
