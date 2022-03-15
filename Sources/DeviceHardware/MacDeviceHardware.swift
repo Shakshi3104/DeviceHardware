@@ -217,7 +217,7 @@ public class MacDeviceHardware: DeviceHardware {
            case .MacBookAir8_1:
                return "MacBook Air (Retina, 13-inch, 2018)"
            case .MacBookAir7_2:
-               /// 何かしらの判別処理が必要
+               /// Need some decision processing
                return "MacBook Air (13-inch, 2017) / (13-inch, Early 2015)"
            case .MacBookAir7_1:
                return "MacBook Air (11-inch, Early 2015)"
