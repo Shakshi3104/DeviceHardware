@@ -198,8 +198,11 @@ public class MacDeviceHardware: DeviceHardware {
            /// M1
            case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2:
                return "16-core"
+           /// M1 Pro
+           case .MacBookPro18_1, .MacBookPro18_3:
+               return "16-core"
            /// M1 Max
-           case .Mac13_1:
+           case .MacBookPro18_2, .MacBookPro18_4, .Mac13_1:
                return "16-core"
            /// M1 Ultra
            case .Mac13_2:
