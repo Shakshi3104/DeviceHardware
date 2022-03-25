@@ -337,7 +337,7 @@ public class MacDeviceHardware: DeviceHardware {
                
            // MARK: Mac Studio
            case .Mac13_1, .Mac13_2:
-               return "Mac Studio"
+               return "Mac Studio (2022)"
            }
        }
     }
