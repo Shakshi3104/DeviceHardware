@@ -195,8 +195,13 @@ public class MacDeviceHardware: DeviceHardware {
        // Neural Engine Information
        func neuralEngine() -> String {
            switch self {
-           case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2, .Mac13_1:
+           /// M1
+           case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2:
                return "16-core"
+           /// M1 Max
+           case .Mac13_1:
+               return "16-core"
+           /// M1 Ultra
            case .Mac13_2:
                return "32-core"
            default:
