@@ -306,7 +306,7 @@ public class MacDeviceHardware: DeviceHardware {
                
            // MARK: iMac Pro
            case .iMacPro1_1:
-               return "iMac Pro"
+               return "iMac Pro (2017)"
                
            // MARK: iMac
            case .iMac21_1, .iMac21_2:
