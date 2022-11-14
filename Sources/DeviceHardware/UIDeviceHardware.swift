@@ -391,6 +391,19 @@ public class UIDeviceHardware: DeviceHardware {
         /// iPad Air (5th generation)
         case iPad13_16 = "iPad13,16"
         case iPad13_17 = "iPad13,17"
+        /// iPad (10th generation)
+        case iPad13_18 = "iPad13,18"
+        case iPad13_19 = "iPad13,19"
+        /// iPad Pro 11-inch (4th generation)
+        case iPad14_3_A = "iPad14,3-A"
+        case iPad14_3_B = "iPad14,3-B"
+        case iPad14_4_A = "iPad14,4-A"
+        case iPad14_4_B = "iPad14,4-B"
+        /// iPad Pro 12.9-inch (6th generation)
+        case iPad14_5_A = "iPad14,5-A"
+        case iPad14_5_B = "iPad14,5-B"
+        case iPad14_6_A = "iPad14,6-A"
+        case iPad14_6_B = "iPad14,6-B"
         
         /// model name
         func modelName() -> String {
@@ -547,6 +560,12 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPhone 14 Pro"
             case .iPhone15_3:
                 return "iPhone 14 Pro Max"
+            case .iPad13_18, .iPad13_19:
+                return "iPad (10th generation)"
+            case .iPad14_3_A, .iPad14_3_B, .iPad14_4_A, .iPad14_4_B:
+                return "iPad Pro (11-inch) (4th generation)"
+            case .iPad14_5_A, .iPad14_5_B, .iPad14_6_A, .iPad14_6_B:
+                return "iPad Pro (12.9-inch) (6th generation)"
             }
         }
             
@@ -619,8 +638,8 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd), iPad (9th)
             case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8, .iPad12_2, .iPad12_1:
                 return "Apple A13 Bionic"
-            /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
-            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+            /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th), iPad (10th)
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2, .iPad13_18, .iPad13_19:
                 return "Apple A14 Bionic"
             /// iPad Pro (5th), iPad Air (5th)
             case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7, .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11, .iPad13_16, .iPad13_17:
@@ -631,6 +650,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 14 Pro/14 Pro Max
             case .iPhone15_2, .iPhone15_3:
                 return "Apple A16 Bionic"
+            /// iPad Pro (6th)
+            case .iPad14_3_A, .iPad14_3_B, .iPad14_4_A, .iPad14_4_B, .iPad14_5_A, .iPad14_5_B, .iPad14_6_A, .iPad14_6_B:
+                return "Apple M2"
             }
         }
         
@@ -704,8 +726,8 @@ public class UIDeviceHardware: DeviceHardware {
              /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd), iPad (9th)
             case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8, .iPad12_2, .iPad12_1:
                 return "2.65GHz 6-core"
-             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
-            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th), iPad (10th)
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2, .iPad13_18, .iPad13_19:
                 return "2.99GHz 6-core"
             /// iPad Pro (5th), iPad Air (5th)
             case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7, .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11, .iPad13_16, .iPad13_17:
@@ -719,6 +741,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 14 Pro/14 Pro Max
             case .iPhone15_2, .iPhone15_3:
                 return "3.46GHz 6-core"
+            /// iPad Pro (6th)
+            case .iPad14_3_A, .iPad14_3_B, .iPad14_4_A, .iPad14_4_B, .iPad14_5_A, .iPad14_5_B, .iPad14_6_A, .iPad14_6_B:
+                return "3.49GHz 6-core"
             }
         }
         
@@ -791,8 +816,8 @@ public class UIDeviceHardware: DeviceHardware {
              /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd), iPad (9th)
             case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8, .iPad12_2, .iPad12_1:
                 return "4-core"
-             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
-            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+             /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th), iPad (10th)
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2, .iPad13_18, .iPad13_19:
                 return "4-core"
             /// iPad Pro (5th), iPad Air
             case .iPad13_4, .iPad13_5, .iPad13_6, .iPad13_7, .iPad13_8, .iPad13_9, .iPad13_10, .iPad13_11, .iPad13_16, .iPad13_17:
@@ -806,6 +831,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 14 Pro/14 Pro Max
             case .iPhone15_2, .iPhone15_3:
                 return "5-core"
+            /// iPad Pro (6th)
+            case .iPad14_3_A, .iPad14_3_B, .iPad14_4_A, .iPad14_4_B, .iPad14_5_A, .iPad14_5_B, .iPad14_6_A, .iPad14_6_B:
+                return "10-core"
             }
         }
         
@@ -826,9 +854,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 11, iPhone 11 Pro/11 Pro Max, iPhone SE (2nd), iPad (6th)
             case .iPhone12_1, .iPhone12_3, .iPhone12_5, .iPhone12_8, .iPad12_2, .iPad12_1:
                 return "8-core"
-            /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th)
+            /// iPhone 12/12 mini, iPhone 12 Pro/12 Pro Max, iPad Air (4th), iPad (10th)
             /// 11 TOPS
-            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2:
+            case .iPhone13_1, .iPhone13_2, .iPhone13_3, .iPhone13_4, .iPad13_1, .iPad13_2, .iPad13_18, .iPad13_19:
                 return "16-core"
             /// iPad Pro (5th), iPad Air (3rd)
             /// 11 TOPS
@@ -841,6 +869,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 14 Pro/14 Pro Max
             /// 17 TOPS
             case .iPhone15_2, .iPhone15_3:
+                return "16-core"
+            /// iPad Pro (6th)
+            /// 15.8 TOPS
+            case .iPad14_3_A, .iPad14_3_B, .iPad14_4_A, .iPad14_4_B, .iPad14_5_A, .iPad14_5_B, .iPad14_6_A, .iPad14_6_B:
                 return "16-core"
             /// Other device
             default:
