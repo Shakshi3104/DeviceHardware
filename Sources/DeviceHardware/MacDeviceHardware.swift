@@ -69,13 +69,23 @@ public class MacDeviceHardware: DeviceHardware {
         case MacBookAir6_1 = "MacBookAir6,1"
 
         // MARK: MacBook Pro
+        /// MacBook Pro (14-inch, 2023) / M2 Pro
+        case Mac14_9 = "Mac14,9"
+        /// MacBook Pro (14-inch, 2023) / M2 Max
+        case Mac14_5 = "Mac14,5"
+        /// MacBook Pro (16-inch, 2023) / M2 Pro
+        case Mac14_10 = "Mac14,10"
+        /// MacBook Pro (16-inch, 2023) / M2 Max
+        case Mac14_6 = "Mac14,6"
         /// MacBook Pro (13-inch, M2, 2022)
         case Mac14_7 = "Mac14,7"
-        /// MacBook Pro (16-inch, 2021)
+        /// MacBook Pro (16-inch, 2021) / M1 Pro
         case MacBookPro18_1 = "MacBookPro18,1"
+        /// MacBook Pro (16-inch, 2021) / M1 Max
         case MacBookPro18_2 = "MacBookPro18,2"
-        /// MacBook Pro (14-inch, 2021)
+        /// MacBook Pro (14-inch, 2021) / M1 Pro
         case MacBookPro18_3 = "MacBookPro18,3"
+        /// MacBook Pro (14-inch, 2021) / M1 Max
         case MacBookPro18_4 = "MacBookPro18,4"
         /// MacBook Pro (13-inch, M1, 2020)
         case MacBookPro17_1 = "MacBookPro17,1"
@@ -132,6 +142,10 @@ public class MacDeviceHardware: DeviceHardware {
         case MacPro6_1 = "MacPro6,1"
 
         // MARK: Mac mini
+        /// Mac mini (2023) / M2
+        case Mac14_3 = "Mac14,3"
+        /// Mac mini (2023) / M2 Pro
+        case Mac14_12 = "Mac14,12"
         /// Mac mini (M1, 2020)
         case Macmini9_1 = "Macmini9,1"
         /// Mac mini (2018)
@@ -191,7 +205,9 @@ public class MacDeviceHardware: DeviceHardware {
             case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2,
                     .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4,
                     .Mac13_1, .Mac13_2,
-                    .Mac14_2, .Mac14_7:
+                    .Mac14_2, .Mac14_7,
+                    .Mac14_5, .Mac14_6,
+                    .Mac14_9, .Mac14_10, .Mac14_12:
                 return true
             default:
                 return false
@@ -215,6 +231,12 @@ public class MacDeviceHardware: DeviceHardware {
                return "32-core"
            /// M2
            case .Mac14_2, .Mac14_7:
+               return "16-core"
+           /// M2 Pro
+           case .Mac14_9, .Mac14_10, .Mac14_12:
+               return "16-core"
+           /// M2 Max
+           case .Mac14_5, .Mac14_6:
                return "16-core"
            default:
                return "None"
@@ -248,6 +270,10 @@ public class MacDeviceHardware: DeviceHardware {
                return "MacBook Air (11-inch, Early 2014) / (11-inch, Mid 2013)"
            
            // MARK: MacBook Pro
+           case .Mac14_5, .Mac14_9:
+               return "MacBook Pro (14-inch, 2023)"
+           case .Mac14_6, .Mac14_10:
+               return "MacBook Pro (16-inch, 2023)"
            case .Mac14_7:
                return "MacBook Pro (13-inch, M2, 2022)"
            case .MacBookPro18_1, .MacBookPro18_2:
@@ -310,6 +336,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "Mac Pro (Late 2013)"
                
            // MARK: Mac mini
+           case .Mac14_3, .Mac14_12:
+               return "Mac mini (2023)"
            case .Macmini9_1:
                return "Mac mini (M1, 2020)"
            case .Macmini8_1:
@@ -543,7 +571,7 @@ public extension MacDeviceHardware {
                     .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4, .Mac13_1, .Mac13_2:
                 return "3.2GHz \(core)-core"
             /// M2 family
-            case .Mac14_2, .Mac14_7:
+            case .Mac14_2, .Mac14_7, .Mac14_3, .Mac14_5, .Mac14_6, .Mac14_9, .Mac14_10, .Mac14_12:
                 return "3.49GHz \(core)-core"
             default:
                 return nil
