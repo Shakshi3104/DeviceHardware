@@ -49,6 +49,8 @@ public class MacDeviceHardware: DeviceHardware {
     // MARK: - Model Identifier
     enum ModelIdentifier: String {
         // MARK: MacBook Air
+        /// MacBook Air (15-inch, M2, 2023)
+        case Mac14_15 = "Mac14,15"
         /// MacBook Air (M2, 2022)
         case Mac14_2 = "Mac14,2"
         /// MacBook Air (M1, 2020)
@@ -136,6 +138,8 @@ public class MacDeviceHardware: DeviceHardware {
         case MacBook8_1 = "MacBook8,1"
 
         // MARK: Mac Pro
+        /// Mac Pro (2023)
+        case Mac14_8 = "Mac14,8"
         /// Mac Pro (2019)
         case MacPro7_1 = "MacPro7,1"
         /// Mac Pro (Late 2013)
@@ -194,20 +198,35 @@ public class MacDeviceHardware: DeviceHardware {
         case iMac13_1 = "iMac13,1"
         
         // MARK: Mac Studio
-        /// Mac Studio (M1 Max)
+        /// Mac Studio (2023) / M2 Max
+        case Mac14_13 = "Mac14,13"
+        /// Mac Studio (2023) / M2 Ultra
+        case Mac14_14 = "Mac14,14"
+        /// Mac Studio (2022) / M1 Max
         case Mac13_1 = "Mac13,1"
-        /// Mac Studio (M1 Ultra)
+        /// Mac Studio (2022) / M1 Ultra
         case Mac13_2 = "Mac13,2"
         
         // Whether is Apple Silicon Mac or not
         func isAppleSiliconMac() -> Bool {
             switch self {
-            case .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2,
-                    .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4,
-                    .Mac13_1, .Mac13_2,
-                    .Mac14_2, .Mac14_7,
-                    .Mac14_5, .Mac14_6,
-                    .Mac14_9, .Mac14_10, .Mac14_12:
+            case
+                /// M1
+                    .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2,
+                /// M1 Pro
+                    .MacBookPro18_1, .MacBookPro18_3,
+                /// M1 Max
+                    .MacBookPro18_2, .MacBookPro18_4, .Mac13_1,
+                /// M1 Ultra
+                    .Mac13_2,
+                /// M2
+                    .Mac14_2, .Mac14_7, .Mac14_3, .Mac14_15,
+                /// M2 Pro
+                    .Mac14_9, .Mac14_10, .Mac14_12,
+                /// M2 Max
+                    .Mac14_5, .Mac14_6, .Mac14_13,
+                /// M2 Ultra
+                    .Mac14_8, .Mac14_14:
                 return true
             default:
                 return false
@@ -230,14 +249,17 @@ public class MacDeviceHardware: DeviceHardware {
            case .Mac13_2:
                return "32-core"
            /// M2
-           case .Mac14_2, .Mac14_7:
+           case .Mac14_2, .Mac14_7, .Mac14_15:
                return "16-core"
            /// M2 Pro
            case .Mac14_9, .Mac14_10, .Mac14_12:
                return "16-core"
            /// M2 Max
-           case .Mac14_5, .Mac14_6:
+           case .Mac14_5, .Mac14_6, .Mac14_13:
                return "16-core"
+               /// M2 Ultra
+           case .Mac14_8:
+               return "32-core"
            default:
                return "None"
            }
@@ -247,6 +269,8 @@ public class MacDeviceHardware: DeviceHardware {
        func modelName() -> String {
            switch self {
            // MARK: MacBook Air
+           case .Mac14_15:
+               return "MacBook Air (15-inch, M2, 2023)"
            case .Mac14_2:
                return "MacBook Air (M2, 2022)"
            case .MacBookAir10_1:
@@ -330,6 +354,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "MacBook (Retina, 12-inch, Early 2015)"
                
            // MARK: Mac Pro
+           case .Mac14_8:
+               return "Mac Pro (2023)"
            case .MacPro7_1:
                return "Mac Pro (2019)"
            case .MacPro6_1:
@@ -385,6 +411,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "iMac (21.5-inch, Late 2012)"
                
            // MARK: Mac Studio
+           case .Mac14_13, .Mac14_14:
+               return "Mac Studio (2023)"
            case .Mac13_1, .Mac13_2:
                return "Mac Studio (2022)"
            }
@@ -571,7 +599,7 @@ public extension MacDeviceHardware {
                     .MacBookPro18_1, .MacBookPro18_2, .MacBookPro18_3, .MacBookPro18_4, .Mac13_1, .Mac13_2:
                 return "3.2GHz \(core)-core"
             /// M2 family
-            case .Mac14_2, .Mac14_7, .Mac14_3, .Mac14_5, .Mac14_6, .Mac14_9, .Mac14_10, .Mac14_12:
+            case .Mac14_2, .Mac14_7, .Mac14_3, .Mac14_15, .Mac14_5, .Mac14_6, .Mac14_9, .Mac14_10, .Mac14_12, .Mac14_13, .Mac14_14, .Mac14_8:
                 return "3.49GHz \(core)-core"
             default:
                 return nil
