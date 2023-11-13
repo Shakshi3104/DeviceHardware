@@ -257,8 +257,8 @@ public class MacDeviceHardware: DeviceHardware {
            /// M2 Max
            case .Mac14_5, .Mac14_6, .Mac14_13:
                return "16-core"
-               /// M2 Ultra
-           case .Mac14_8:
+           /// M2 Ultra
+           case .Mac14_14, .Mac14_8:
                return "32-core"
            default:
                return "None"
