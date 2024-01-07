@@ -315,11 +315,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "MacBook Air (11-inch, Early 2014) / (11-inch, Mid 2013)"
            
            // MARK: MacBook Pro
-           case .Mac15_3:
-               return "MacBook Pro (14-inch, M3, Nov 2023)"
-           // TODO: Check the real device to know a model name
-           case .Mac15_6, .Mac15_8, .Mac15_10:
-               return "MacBook Pro (14-inch, M3 Pro or M3 Max, Nov 2023)"
+           case .Mac15_3, .Mac15_6, .Mac15_8, .Mac15_10:
+               return "MacBook Pro (14-inch, Nov 2023)"
            case .Mac15_7, .Mac15_9, .Mac15_11:
                return "MacBook Pro (16-inch, Nov 2023)"
            case .Mac14_5, .Mac14_9:
