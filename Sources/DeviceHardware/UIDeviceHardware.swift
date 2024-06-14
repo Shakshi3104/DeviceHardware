@@ -59,6 +59,27 @@ public class UIDeviceHardware: DeviceHardware {
         
         return code
     }
+
+    private func hasDynamicIsland() -> Bool? {
+        guard let modelId = sthElse() else {
+            return nil
+        }
+        
+        let dynIslandDevices = [
+            "iPhone15,2", // iPhone 14 Pro
+            "iPhone15,3", // iPhone 14 Pro Max
+            "iPhone15,4", // iPhone 15
+            "iPhone15,2", // iPhone 15 Plus
+            "iPhone16,1", // iPhone 15 Plus
+            "iPhone16,2" // iPhone 15 Plus
+        ]
+        
+        if dynIslandDevices.contains(modelId) {
+            return true
+        } else {
+            return false
+        }
+    }
     
     private func getModelName() -> String? {
         guard let id = getModelIdentifier() else {
