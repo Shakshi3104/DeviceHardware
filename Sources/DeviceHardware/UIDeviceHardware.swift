@@ -46,10 +46,6 @@ public class UIDeviceHardware: DeviceHardware {
     public var ramString: String {
         return getRAMString()
     }
-    /// The device has Dynamic Island
-    public var hasDynamicIsland: Bool {
-        return getHasDynamicIsland() ?? false
-    }
     
     // MARK: -
     private func getModelIdentifier() -> String? {
@@ -127,18 +123,6 @@ public class UIDeviceHardware: DeviceHardware {
         }
         
         return modelId.neuralEngine()
-    }
-    
-    private func getHasDynamicIsland() -> Bool? {
-        guard let id = getModelIdentifier() else {
-            return nil
-        }
-        
-        guard let modelId = ModelIdentifier(rawValue: id) else {
-            return nil
-        }
-        
-        return modelId.hasDynamicIsland()
     }
     
     // MARK: -
@@ -1007,18 +991,6 @@ public class UIDeviceHardware: DeviceHardware {
             /// Other device
             default:
                 return "None"
-            }
-        }
-        
-        // TODO: Add devices when new iPhone with the Dynamic Island is announced.
-        // Dynamic Island
-        func hasDynamicIsland() -> Bool {
-            switch self {
-            // iPhone 14 Pro/Pro Max, iPhone 15, iPhone 15 Plus, iPhone 15 Pro/Pro Max
-            case .iPhone15_2, .iPhone15_3, .iPhone15_4, .iPhone15_5, .iPhone16_1, .iPhone16_2:
-                return true
-            default:
-                return false
             }
         }
     }
