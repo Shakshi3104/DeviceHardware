@@ -602,9 +602,9 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPad Air (6th generation) (11-inch)"
             case .iPad14_10, .iPad14_11:
                 return "iPad Air (6th generation) (13-inch)"
-            case .iPad16_6, .iPad16_7:
+            case .iPad16_3, .iPad16_4:
                 return "iPad Pro (M4) (11-inch)"
-            case .iPad16_8, .iPad16_9:
+            case .iPad16_5, .iPad16_6:
                 return "iPad Pro (M4) (13-inch)"
             }
         }
@@ -696,7 +696,7 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 15 Pro/15 Pro Max
             case .iPhone16_1, .iPhone16_2:
                 return "Apple A17 Pro"
-            case .iPad16_6, .iPad16_7, .iPad16_8, .iPad16_9:
+            case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "Apple M4"
             }
         }
@@ -818,7 +818,7 @@ public class UIDeviceHardware: DeviceHardware {
                 return "3.78GHz 6-core"
             /// iPad Pro M4
             /// Apple M4
-            case .iPad16_6, .iPad16_7, .iPad16_8, .iPad16_9:
+            case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "4.4GHz 10-core"
             }
         }
@@ -925,10 +925,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A17 Pro
             case .iPhone16_1, .iPhone16_2:
                 return "6-core"
-            }
             /// iPad Pro M4
             /// Apple M4
-            case .iPad16_6, .iPad16_7, .iPad16_8, .iPad16_9:
+            case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "10-core"
             }
         }
@@ -981,15 +980,14 @@ public class UIDeviceHardware: DeviceHardware {
                 return "16-core"
             /// iPhone 15 Pro/15 Pro Max
             /// Apple A17 Pro
-            /// 35TOPS
+            /// 35 TOPS
             case .iPhone16_1, .iPhone16_2:
                 return "16-core"
             /// iPad Pro M4
             /// Apple M4
             /// 38 TOPS
-            case .iPad16_6, .iPad16_7, .iPad16_8, .iPad16_9:
+            case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "16-core"
-            }
             /// Other device
             default:
                 return "None"
