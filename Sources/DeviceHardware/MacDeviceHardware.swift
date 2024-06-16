@@ -49,6 +49,10 @@ public class MacDeviceHardware: DeviceHardware {
     // MARK: - Model Identifier
     enum ModelIdentifier: String {
         // MARK: MacBook Air
+        /// MacBook Air (13-inch, M3, 2024)
+        case Mac15_12 = "Mac15,12"
+        /// MacBook Air (15-inch, M3, 2024)
+        case Mac15_13 = "Mac15,13"
         /// MacBook Air (15-inch, M2, 2023)
         case Mac14_15 = "Mac14,15"
         /// MacBook Air (M2, 2022)
@@ -221,6 +225,7 @@ public class MacDeviceHardware: DeviceHardware {
         /// Mac Studio (2022) / M1 Ultra
         case Mac13_2 = "Mac13,2"
         
+        // TODO: Add model identifier when new Apple Silicon Series is announced.
         // Whether is Apple Silicon Mac or not
         func isAppleSiliconMac() -> Bool {
             switch self {
@@ -244,13 +249,15 @@ public class MacDeviceHardware: DeviceHardware {
                 /// M3, M3 Pro, M3 Max
                     .Mac15_3, .Mac15_4, .Mac15_5,
                     .Mac15_6, .Mac15_7, .Mac15_8,
-                    .Mac15_9, .Mac15_10, .Mac15_11:
+                    .Mac15_9, .Mac15_10, .Mac15_11,
+                    .Mac15_12, .Mac15_13:
                 return true
             default:
                 return false
             }
         }
        
+       // TODO: Add core counts of Neural Engine when new Apple Silicon Series is announced.
        // Neural Engine Information
        func neuralEngine() -> String {
            switch self {
@@ -279,7 +286,7 @@ public class MacDeviceHardware: DeviceHardware {
            case .Mac14_14, .Mac14_8:
                return "32-core"
            /// M3, M3 Pro, M3 Max
-           case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11:
+           case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11, .Mac15_12, .Mac15_13:
                return "16-core"
            default:
                return "None"
@@ -290,6 +297,10 @@ public class MacDeviceHardware: DeviceHardware {
        func modelName() -> String {
            switch self {
            // MARK: MacBook Air
+           case .Mac15_12:
+               return "MacBook Air (13-inch, M3, 2024)"
+           case .Mac15_13:
+               return "MacBook Air (15-inch, M3, 2024)"
            case .Mac14_15:
                return "MacBook Air (15-inch, M2, 2023)"
            case .Mac14_2:
@@ -616,6 +627,7 @@ public extension MacDeviceHardware {
             return nil
         }
         
+        // TODO: Add CPU frequency when new Apple Silicon Series is announced.
         // MARK: Apple silicon or not
         if modelId.isAppleSiliconMac() {
             guard let core = getPhysicalCore() else {
@@ -630,6 +642,9 @@ public extension MacDeviceHardware {
             /// M2 family
             case .Mac14_2, .Mac14_7, .Mac14_3, .Mac14_15, .Mac14_5, .Mac14_6, .Mac14_9, .Mac14_10, .Mac14_12, .Mac14_13, .Mac14_14, .Mac14_8:
                 return "3.49GHz \(core)-core"
+            /// M3 family
+            case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11, .Mac15_12, .Mac15_13:
+                return "4.05GHz \(core)-core"
             default:
                 return nil
             }
