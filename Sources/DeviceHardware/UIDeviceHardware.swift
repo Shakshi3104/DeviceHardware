@@ -46,6 +46,10 @@ public class UIDeviceHardware: DeviceHardware {
     public var ramString: String {
         return getRAMString()
     }
+    /// The device has Dynamic Island
+    public var hasDynamicIsland: Bool {
+        return getHasDynamicIsland() ?? false
+    }
     
     // MARK: -
     private func getModelIdentifier() -> String? {
@@ -125,6 +129,18 @@ public class UIDeviceHardware: DeviceHardware {
         return modelId.neuralEngine()
     }
     
+    private func getHasDynamicIsland() -> Bool? {
+        guard let id = getModelIdentifier() else {
+            return nil
+        }
+        
+        guard let modelId = ModelIdentifier(rawValue: id) else {
+            return nil
+        }
+        
+        return modelId.hasDynamicIsland()
+    }
+    
     // MARK: -
     enum ModelIdentifier: String {
         // MARK: Simulator
@@ -146,7 +162,7 @@ public class UIDeviceHardware: DeviceHardware {
         case iPod7_1 = "iPod7,1"
         /// iPod touch (7th Generation)
         case iPod9_1 = "iPod9,1"
-
+        
         // MARK: iPhone
         /// iPhone
         case iPhone1_1 = "iPhone1,1"
@@ -254,7 +270,7 @@ public class UIDeviceHardware: DeviceHardware {
         case iPhone16_1 = "iPhone16,1"
         /// iPhone 15 Pro Max
         case iPhone16_2 = "iPhone16,2"
-
+        
         // MARK: iPad
         /// iPad
         case iPad1_1 = "iPad1,1"
@@ -509,7 +525,7 @@ public class UIDeviceHardware: DeviceHardware {
             case .iPad1_1:
                 return "iPad (1st generation)"
             case .iPad2_1, .iPad2_4, .iPad2_2, .iPad2_3:
-                    return "iPad 2"
+                return "iPad 2"
             case .iPad2_5, .iPad2_6, .iPad2_7:
                 return "iPad mini"
             case .iPad3_1, .iPad3_2, .iPad3_3:
@@ -608,8 +624,8 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPad Pro (M4) (13-inch)"
             }
         }
-            
-            // Processor (SoC) Name
+        
+        // Processor (SoC) Name
         func processorName() -> String {
             switch self {
             /// Simulator
@@ -705,19 +721,19 @@ public class UIDeviceHardware: DeviceHardware {
         // CPU Information
         func cpu() -> String {
             switch self {
-             /// Simulator
+            /// Simulator
             case .i386, .x86_64, .arm64:
                 return "N/A"
-             /// iPhone, iPod touch (1st), iPhone 3G
+            /// iPhone, iPod touch (1st), iPhone 3G
             case .iPod1_1, .iPhone1_1, .iPhone1_2:
                 return "412MHz 1-core"
-             /// iPod touch (2nd)
+            /// iPod touch (2nd)
             case .iPod2_1:
                 return "533MHz 1-core"
-             /// iPhone 3GS
+            /// iPhone 3GS
             case .iPhone2_1:
                 return "600MHz 1-core"
-             /// iPod touch (3rd)
+            /// iPod touch (3rd)
             case .iPod3_1:
                 return "800MHz 1-core"
             /// iPhone 4, iPad (1st), iPod touch (4th)
@@ -826,55 +842,55 @@ public class UIDeviceHardware: DeviceHardware {
         // GPU Information
         func gpu() -> String {
             switch self {
-             /// Simulator
+            /// Simulator
             case .i386, .x86_64, .arm64:
                 return "N/A"
-             /// iPhone, iPod touch (1st), iPhone 3G
+            /// iPhone, iPod touch (1st), iPhone 3G
             case .iPod1_1, .iPhone1_1, .iPhone1_2:
                 return "PowerVR MBX Lite"
-             /// iPod touch (2nd)
+            /// iPod touch (2nd)
             case .iPod2_1:
                 return "PowerVR MBX Lite"
-             /// iPhone 3GS
+            /// iPhone 3GS
             case .iPhone2_1:
                 return "PowerVR SGX535"
-             /// iPod touch (3rd)
+            /// iPod touch (3rd)
             case .iPod3_1:
                 return "PowerVR SGX535"
-             /// iPhone 4, iPad (1st), iPod touch (4th)
+            /// iPhone 4, iPad (1st), iPod touch (4th)
             case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1:
                 return "PowerVR SGX535"
-             /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
+            /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
             case .iPhone4_1, .iPod5_1, .iPad2_5, .iPad2_6, .iPad2_7, .iPad2_1, .iPad2_2, .iPad2_3, .iPad2_4:
                 return "PowerVR SGX543MP2 2-core"
-             /// iPad (3rd)
+            /// iPad (3rd)
             case .iPad3_1, .iPad3_2, .iPad3_3:
                 return "PowerVR SGX554MP4 4-core"
-             /// iPhone 5, iPhone 5c
+            /// iPhone 5, iPhone 5c
             case .iPhone5_1, .iPhone5_2, .iPhone5_3, .iPhone5_4:
                 return "PowerVR SGX543MP3 3-core"
-             /// iPad (4th)
+            /// iPad (4th)
             case .iPad3_4, .iPad3_5, .iPad3_6:
                 return "PowerVR SGX554MP4 4-core"
-             /// iPhone 5s, iPad mini 2, iPad mini 3, iPad Air (1st)
+            /// iPhone 5s, iPad mini 2, iPad mini 3, iPad Air (1st)
             case .iPhone6_1, .iPhone6_2, .iPad4_4, .iPad4_5, .iPad4_6, .iPad4_7, .iPad4_8, .iPad4_9, .iPad4_1, .iPad4_2, .iPad4_3:
                 return "PowerVR G6430 4-core"
-             /// iPhone 6/6 Plus, iPod touch (6th), iPad mini 4
+            /// iPhone 6/6 Plus, iPod touch (6th), iPad mini 4
             case .iPhone7_1, .iPhone7_2, .iPod7_1, .iPad5_1, .iPad5_2:
                 return "PowerVR GXA6450 4-core"
-             /// iPad Air (2nd)
+            /// iPad Air (2nd)
             case .iPad5_4, .iPad5_3:
                 return "PowerVR GXA6850 8-core"
-             /// iPhone 6s/6s Plus, iPhone SE (1st), iPad (5th)
+            /// iPhone 6s/6s Plus, iPhone SE (1st), iPad (5th)
             case .iPhone8_1, .iPhone8_2, .iPhone8_4, .iPad6_11, .iPad6_12:
                 return "PowerVR GT7600 6-core"
-             /// iPad Pro (1st)
+            /// iPad Pro (1st)
             case .iPad6_3, .iPad6_4, .iPad6_7, .iPad6_8:
                 return "PowerVR GTA7850 12-core"
-             /// iPhone 7/7 Plus, iPad (6th), iPod touch (7th), iPad (7th)
+            /// iPhone 7/7 Plus, iPad (6th), iPod touch (7th), iPad (7th)
             case .iPhone9_1, .iPhone9_2, .iPhone9_3, .iPhone9_4, .iPad7_5, .iPad7_6, .iPod9_1, .iPad7_11, .iPad7_12:
                 return "PowerVR GT7600 Plus 6-core"
-             /// iPad Pro (2nd)
+            /// iPad Pro (2nd)
             case .iPad7_1, .iPad7_2, .iPad7_3, .iPad7_4:
                 return "PowerVR GT7600 Plus 12-core"
             /// iPhone 8/8 Plus, iPhone X
@@ -991,6 +1007,18 @@ public class UIDeviceHardware: DeviceHardware {
             /// Other device
             default:
                 return "None"
+            }
+        }
+        
+        // TODO: Add devices when new iPhone with the Dynamic Island is announced.
+        // Dynamic Island
+        func hasDynamicIsland() -> Bool {
+            switch self {
+            // iPhone 14 Pro/Pro Max, iPhone 15, iPhone 15 Plus, iPhone 15 Pro/Pro Max
+            case .iPhone15_2, .iPhone15_3, .iPhone15_4, .iPhone15_5, .iPhone16_1, .iPhone16_2:
+                return true
+            default:
+                return false
             }
         }
     }
