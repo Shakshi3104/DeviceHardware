@@ -270,6 +270,14 @@ public class UIDeviceHardware: DeviceHardware {
         case iPhone16_1 = "iPhone16,1"
         /// iPhone 15 Pro Max
         case iPhone16_2 = "iPhone16,2"
+        /// iPhone 16
+        case iPhone17_3 = "iPhone17,3"
+        /// iPhone 16 Plus
+        case iPhone17_4 = "iPhone17,4"
+        /// iPhone 16 Pro
+        case iPhone17_1 = "iPhone17,1"
+        /// iPhone 16 Pro Max
+        case iPhone17_2 = "iPhone17,2"
         
         // MARK: iPad
         /// iPad
@@ -622,6 +630,14 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPad Pro (M4) (11-inch)"
             case .iPad16_5, .iPad16_6:
                 return "iPad Pro (M4) (13-inch)"
+            case .iPhone17_3:
+                return "iPhone 16"
+            case .iPhone17_4:
+                return "iPhone 16 Plus"
+            case .iPhone17_1:
+                return "iPhone 16 Pro"
+            case .iPhone17_2:
+                return "iPhone 16 Pro Max"
             }
         }
         
@@ -712,8 +728,15 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 15 Pro/15 Pro Max
             case .iPhone16_1, .iPhone16_2:
                 return "Apple A17 Pro"
+            /// iPad Pro (M4)
             case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "Apple M4"
+            /// iPhone 16/16 Plus
+            case .iPhone17_3, .iPhone17_4:
+                return "Apple A18"
+            /// iPhone 16 Pro/16 Pro Max
+            case .iPhone17_1, .iPhone17_2:
+                return "Apple A18 Pro"
             }
         }
         
@@ -836,6 +859,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple M4
             case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "4.4GHz 10-core"
+            /// iPhone 16/16Plus, iPhone 16Pro/16 Pro Max
+            /// Apple A18, Apple A18 Pro
+            case .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4:
+                return "4.05GHz 6-core"
             }
         }
         
@@ -945,6 +972,14 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple M4
             case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "10-core"
+            /// iPhone 16/16 Plus
+            /// Apple A18
+            case .iPhone17_3, .iPhone17_4:
+                return "5-core"
+            /// iPhone 16Pro/16 Pro Max
+            /// Apple A18 Pro
+            case .iPhone17_1, .iPhone17_2:
+                return "6-core"
             }
         }
         
@@ -1004,6 +1039,11 @@ public class UIDeviceHardware: DeviceHardware {
             /// 38 TOPS
             case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "16-core"
+            /// iPhone 16/16 Plus, iPhone 16 Pro/16 Pro Max
+            /// Apple A18, Apple A18 Pro
+            /// 35 TOPS
+            case .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4:
+                return "16-core"
             /// Other device
             default:
                 return "None"
@@ -1014,8 +1054,8 @@ public class UIDeviceHardware: DeviceHardware {
         // Dynamic Island
         func hasDynamicIsland() -> Bool {
             switch self {
-            // iPhone 14 Pro/Pro Max, iPhone 15, iPhone 15 Plus, iPhone 15 Pro/Pro Max
-            case .iPhone15_2, .iPhone15_3, .iPhone15_4, .iPhone15_5, .iPhone16_1, .iPhone16_2:
+            // 14 Pro/Pro Max, 15/15 Plus, 15 Pro/Pro Max, 16/16 Plus, 16 Pro/16 Pro Max
+            case .iPhone15_2, .iPhone15_3, .iPhone15_4, .iPhone15_5, .iPhone16_1, .iPhone16_2, .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4:
                 return true
             default:
                 return false
