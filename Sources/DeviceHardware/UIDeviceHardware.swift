@@ -452,6 +452,9 @@ public class UIDeviceHardware: DeviceHardware {
         case iPad16_5 = "iPad16,5"
         /// iPad Pro 13-inch M4 Wi-Fi + Cellular
         case iPad16_6 = "iPad16,6"
+        /// iPad mini (A17 Pro)
+        case iPad16_1 = "iPad16,1"
+        case iPad16_2 = "iPad16,2"
         
         /// model name
         func modelName() -> String {
@@ -638,6 +641,8 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPhone 16 Pro"
             case .iPhone17_2:
                 return "iPhone 16 Pro Max"
+            case .iPad16_1, .iPad16_2:
+                return "iPad mini (A17 Pro)"
             }
         }
         
@@ -726,7 +731,7 @@ public class UIDeviceHardware: DeviceHardware {
             case .iPad14_3_A, .iPad14_3_B, .iPad14_4_A, .iPad14_4_B, .iPad14_5_A, .iPad14_5_B, .iPad14_6_A, .iPad14_6_B, .iPad14_8, .iPad14_9, .iPad14_10, .iPad14_11:
                 return "Apple M2"
             /// iPhone 15 Pro/15 Pro Max
-            case .iPhone16_1, .iPhone16_2:
+            case .iPhone16_1, .iPhone16_2, .iPad16_1, .iPad16_2:
                 return "Apple A17 Pro"
             /// iPad Pro (M4)
             case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
@@ -853,7 +858,7 @@ public class UIDeviceHardware: DeviceHardware {
                 return "3.49GHz 6-core"
             /// iPhone 15 Pro/15 Pro Max
             /// Apple A17 Pro
-            case .iPhone16_1, .iPhone16_2:
+            case .iPhone16_1, .iPhone16_2, .iPad16_1, .iPad16_2:
                 return "3.78GHz 6-core"
             /// iPad Pro M4
             /// Apple M4
@@ -966,7 +971,7 @@ public class UIDeviceHardware: DeviceHardware {
                 return "10-core"
             /// iPhone 15 Pro/15 Pro Max
             /// Apple A17 Pro
-            case .iPhone16_1, .iPhone16_2:
+            case .iPhone16_1, .iPhone16_2, .iPad16_1, .iPad16_2:
                 return "6-core"
             /// iPad Pro M4
             /// Apple M4
@@ -1032,7 +1037,7 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 15 Pro/15 Pro Max
             /// Apple A17 Pro
             /// 35 TOPS
-            case .iPhone16_1, .iPhone16_2:
+            case .iPhone16_1, .iPhone16_2, .iPad16_1, .iPad16_2:
                 return "16-core"
             /// iPad Pro M4
             /// Apple M4
