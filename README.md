@@ -8,7 +8,6 @@ DeviceHardware is a package for getting iPhone, iPad and Mac model names and har
 
 Support for iOS devices and Macs by November 16, 2024 (JST).
 
-
 ## Usage
 
 ```swift
