@@ -1068,7 +1068,9 @@ public class UIDeviceHardware: DeviceHardware {
         func hasDynamicIsland() -> Bool {
             switch self {
             // 14 Pro/Pro Max, 15/15 Plus, 15 Pro/Pro Max, 16/16 Plus, 16 Pro/16 Pro Max
-            case .iPhone15_2, .iPhone15_3, .iPhone15_4, .iPhone15_5, .iPhone16_1, .iPhone16_2, .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4:
+            case .iPhone15_2, .iPhone15_3, .iPhone15_4, .iPhone15_5,
+                    .iPhone16_1, .iPhone16_2,
+                    .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4:
                 return true
             default:
                 return false
