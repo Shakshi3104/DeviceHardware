@@ -278,6 +278,8 @@ public class UIDeviceHardware: DeviceHardware {
         case iPhone17_1 = "iPhone17,1"
         /// iPhone 16 Pro Max
         case iPhone17_2 = "iPhone17,2"
+        /// iPhone 16e
+        case iPhone17_5 = "iPhone17,5"
         
         // MARK: iPad
         /// iPad
@@ -643,6 +645,8 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPhone 16 Pro Max"
             case .iPad16_1, .iPad16_2:
                 return "iPad mini (A17 Pro)"
+            case .iPhone17_5:
+                return "iPhone 16e"
             }
         }
         
@@ -737,7 +741,7 @@ public class UIDeviceHardware: DeviceHardware {
             case .iPad16_3, .iPad16_4, .iPad16_5, .iPad16_6:
                 return "Apple M4"
             /// iPhone 16/16 Plus
-            case .iPhone17_3, .iPhone17_4:
+            case .iPhone17_3, .iPhone17_4, .iPhone17_5:
                 return "Apple A18"
             /// iPhone 16 Pro/16 Pro Max
             case .iPhone17_1, .iPhone17_2:
@@ -866,7 +870,7 @@ public class UIDeviceHardware: DeviceHardware {
                 return "4.4GHz 10-core"
             /// iPhone 16/16Plus, iPhone 16Pro/16 Pro Max
             /// Apple A18, Apple A18 Pro
-            case .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4:
+            case .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4, .iPhone17_5:
                 return "4.05GHz 6-core"
             }
         }
@@ -985,6 +989,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A18 Pro
             case .iPhone17_1, .iPhone17_2:
                 return "6-core"
+            /// iPhone 16e
+            /// Apple A18
+            case .iPhone17_5:
+                return "4-core"
             }
         }
         
@@ -1047,7 +1055,7 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 16/16 Plus, iPhone 16 Pro/16 Pro Max
             /// Apple A18, Apple A18 Pro
             /// 35 TOPS
-            case .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4:
+            case .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4, .iPhone17_5:
                 return "16-core"
             /// Other device
             default:
