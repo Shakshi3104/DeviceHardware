@@ -49,6 +49,10 @@ public class MacDeviceHardware: DeviceHardware {
     // MARK: - Model Identifier
     enum ModelIdentifier: String {
         // MARK: MacBook Air
+        /// MacBook Air (13-inch, M4, 2025)
+        case Mac16_12 = "Mac16,12"
+        /// MacBook Air (15-inch, M4, 2025)
+        case Mac16_13 = "Mac16,13"
         /// MacBook Air (13-inch, M3, 2024)
         case Mac15_12 = "Mac15,12"
         /// MacBook Air (15-inch, M3, 2024)
@@ -266,7 +270,10 @@ public class MacDeviceHardware: DeviceHardware {
                     .Mac15_3, .Mac15_4, .Mac15_5,
                     .Mac15_6, .Mac15_7, .Mac15_8,
                     .Mac15_9, .Mac15_10, .Mac15_11,
-                    .Mac15_12, .Mac15_13:
+                    .Mac15_12, .Mac15_13,
+                /// M4, M4 Pro, M4 Max
+                    .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_12, .Mac16_13, .Mac16_15
+                :
                 return true
             default:
                 return false
@@ -305,7 +312,7 @@ public class MacDeviceHardware: DeviceHardware {
            case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11, .Mac15_12, .Mac15_13:
                return "16-core"
            /// M4, M4 Pro, M4 Max
-           case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_15:
+           case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_15, .Mac16_12, .Mac16_13:
                return "16-core"
            default:
                return "None"
@@ -316,6 +323,10 @@ public class MacDeviceHardware: DeviceHardware {
        func modelName() -> String {
            switch self {
            // MARK: MacBook Air
+           case .Mac16_12:
+               return "MacBook Air (13-inch, M4, 2025)"
+           case .Mac16_13:
+               return "MacBook Air (15-inch, M4, 2025)"
            case .Mac15_12:
                return "MacBook Air (13-inch, M3, 2024)"
            case .Mac15_13:
@@ -674,6 +685,12 @@ public extension MacDeviceHardware {
             /// M3 family
             case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11, .Mac15_12, .Mac15_13:
                 return "4.05GHz \(core)-core"
+            /// M4
+            case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_10, .Mac16_12, .Mac16_13:
+                return "4.4GHz \(core)-core"
+            /// M4 Pro, M4 Max
+            case .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_15:
+                return "4.51GHz \(core)-core"
             default:
                 return nil
             }
