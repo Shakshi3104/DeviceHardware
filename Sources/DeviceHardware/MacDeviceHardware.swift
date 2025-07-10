@@ -49,6 +49,10 @@ public class MacDeviceHardware: DeviceHardware {
     // MARK: - Model Identifier
     enum ModelIdentifier: String {
         // MARK: MacBook Air
+        /// MacBook Air (13-inch, M4, 2025)
+        case Mac16_12 = "Mac16,12"
+        /// MacBook Air (15-inch, M4, 2025)
+        case Mac16_13 = "Mac16,13"
         /// MacBook Air (13-inch, M3, 2024)
         case Mac15_12 = "Mac15,12"
         /// MacBook Air (15-inch, M3, 2024)
@@ -266,7 +270,10 @@ public class MacDeviceHardware: DeviceHardware {
                     .Mac15_3, .Mac15_4, .Mac15_5,
                     .Mac15_6, .Mac15_7, .Mac15_8,
                     .Mac15_9, .Mac15_10, .Mac15_11,
-                    .Mac15_12, .Mac15_13:
+                    .Mac15_12, .Mac15_13,
+                /// M4, M4 Pro, M4 Max
+                    .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_12, .Mac16_13, .Mac16_15
+                :
                 return true
             default:
                 return false
