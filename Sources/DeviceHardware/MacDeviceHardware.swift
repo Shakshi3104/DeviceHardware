@@ -79,6 +79,8 @@ public class MacDeviceHardware: DeviceHardware {
         case MacBookAir6_1 = "MacBookAir6,1"
 
         // MARK: MacBook Pro
+        /// MacBook Pro (M5, 2025)  // 2025年10月発売モデル
+        case Mac17_2 = "Mac17,2"
         /// MacBook Pro (14-inch, 2024) / M4
         case Mac16_1 = "Mac16,1"
         /// MacBook Pro (14-inch, 2024) / M4 Pro or M4 Max
@@ -91,12 +93,12 @@ public class MacDeviceHardware: DeviceHardware {
         case Mac15_3 = "Mac15,3"
         /// MacBook Pro (14-inch, Nov 2023) / M3 Pro or M3 Max
         case Mac15_6 = "Mac15,6"
-        case Mac15_8 = "Mac15_8"
+        case Mac15_8 = "Mac15,8"
         case Mac15_10 = "Mac15,10"
         /// MacBook Pro (16-inch, Nov 2023) / M3 Pro or M3 Max
-        case Mac15_7 = "Mac15_7"
-        case Mac15_9 = "Mac15_9"
-        case Mac15_11 = "Mac15_11"
+        case Mac15_7 = "Mac15,7"
+        case Mac15_9 = "Mac15,9"
+        case Mac15_11 = "Mac15,11"
         /// MacBook Pro (14-inch, 2023) / M2 Pro
         case Mac14_9 = "Mac14,9"
         /// MacBook Pro (14-inch, 2023) / M2 Max
@@ -154,7 +156,7 @@ public class MacDeviceHardware: DeviceHardware {
         case MacBookPro11_2 = "MacBookPro11,2"
         /// MacBook Pro (Retina, 13-inch, Mid 2014), MacBook Pro (Retina, 13-inch, Late 2013)
         case MacBookPro11_1 = "MacBookPro11,1"
-
+        
         // MARK: MacBook (12-inch)
         /// MacBook (Retina, 12-inch, 2017)
         case MacBook10_1 = "MacBook10,1"
@@ -272,7 +274,9 @@ public class MacDeviceHardware: DeviceHardware {
                     .Mac15_9, .Mac15_10, .Mac15_11,
                     .Mac15_12, .Mac15_13,
                 /// M4, M4 Pro, M4 Max
-                    .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_12, .Mac16_13, .Mac16_15
+                    .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_12, .Mac16_13, .Mac16_15,
+                /// M5
+                    .Mac17_2
                 :
                 return true
             default:
@@ -313,6 +317,9 @@ public class MacDeviceHardware: DeviceHardware {
                return "16-core"
            /// M4, M4 Pro, M4 Max
            case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_15, .Mac16_12, .Mac16_13:
+               return "16-core"
+           /// M5
+           case .Mac17_2:
                return "16-core"
            default:
                return "None"
@@ -356,6 +363,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "MacBook Air (11-inch, Early 2014) / (11-inch, Mid 2013)"
            
            // MARK: MacBook Pro
+           case .Mac17_2:
+               return "MacBook Pro (14-inch, 2025)" 
            case .Mac16_1, .Mac16_6, .Mac16_8:
                return "MacBook Pro (14-inch, 2024)"
            case .Mac16_7, .Mac16_5:
@@ -691,6 +700,10 @@ public extension MacDeviceHardware {
             /// M4 Pro, M4 Max
             case .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_15:
                 return "4.51GHz \(core)-core"
+            // TODO: M5 (Mac17,2) のクロック周波数が判明したら正しい値に修正してください
+            /// M5
+            case .Mac17_2:
+                return "4.8GHz \(core)-core" // 仮の値
             default:
                 return nil
             }
@@ -724,3 +737,4 @@ public extension MacDeviceHardware {
         return modelId.neuralEngine()
     }
 }
+
