@@ -246,43 +246,6 @@ public class MacDeviceHardware: DeviceHardware {
         case Mac13_1 = "Mac13,1"
         /// Mac Studio (2022) / M1 Ultra
         case Mac13_2 = "Mac13,2"
-        
-        // TODO: Add model identifier when new Apple Silicon Series is announced.
-        // Whether is Apple Silicon Mac or not
-        func isAppleSiliconMac() -> Bool {
-            switch self {
-            case
-                /// M1
-                    .MacBookAir10_1, .MacBookPro17_1, .Macmini9_1, .iMac21_1, .iMac21_2,
-                /// M1 Pro
-                    .MacBookPro18_1, .MacBookPro18_3,
-                /// M1 Max
-                    .MacBookPro18_2, .MacBookPro18_4, .Mac13_1,
-                /// M1 Ultra
-                    .Mac13_2,
-                /// M2
-                    .Mac14_2, .Mac14_7, .Mac14_3, .Mac14_15,
-                /// M2 Pro
-                    .Mac14_9, .Mac14_10, .Mac14_12,
-                /// M2 Max
-                    .Mac14_5, .Mac14_6, .Mac14_13,
-                /// M2 Ultra
-                    .Mac14_8, .Mac14_14,
-                /// M3, M3 Pro, M3 Max
-                    .Mac15_3, .Mac15_4, .Mac15_5,
-                    .Mac15_6, .Mac15_7, .Mac15_8,
-                    .Mac15_9, .Mac15_10, .Mac15_11,
-                    .Mac15_12, .Mac15_13,
-                /// M4, M4 Pro, M4 Max
-                    .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_12, .Mac16_13, .Mac16_15,
-                /// M5
-                    .Mac17_2
-                :
-                return true
-            default:
-                return false
-            }
-        }
        
        // TODO: Add core counts of Neural Engine when new Apple Silicon Series is announced.
        // Neural Engine Information
@@ -666,6 +629,16 @@ public extension MacDeviceHardware {
         return Int(core)
     }
     
+    /// Returns true if running on Apple Silicon Mac (arm64), false otherwise.
+    func isAppleSiliconMac() -> Bool? {
+        var isARM: Int32 = 0
+        var size = MemoryLayout<Int32>.size
+        if sysctlbyname("hw.optional.arm64", &isARM, &size, nil, 0) != 0 {
+            return nil
+        }
+        return isARM == 1
+    }
+    
     /// get CPU info
     private func getCpu() -> String? {
         guard let id = getModelIdentifier() else {
@@ -678,7 +651,7 @@ public extension MacDeviceHardware {
         
         // TODO: Add CPU frequency when new Apple Silicon Series is announced.
         // MARK: Apple silicon or not
-        if modelId.isAppleSiliconMac() {
+        if isAppleSiliconMac() != nil {
             guard let core = getPhysicalCore() else {
                 return nil
             }
