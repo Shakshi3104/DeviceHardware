@@ -465,6 +465,14 @@ public class UIDeviceHardware: DeviceHardware {
         /// iPad mini (A17 Pro)
         case iPad16_1 = "iPad16,1"
         case iPad16_2 = "iPad16,2"
+        /// iPad Pro 11-inch (M5, 2025) Wi-Fi
+        case iPad17_1 = "iPad17,1"
+        /// iPad Pro 11-inch (M5, 2025) Wi-Fi + Cellular
+        case iPad17_2 = "iPad17,2"
+        /// iPad Pro 13-inch (M5, 2025) Wi-Fi
+        case iPad17_3 = "iPad17,3"
+        /// iPad Pro 13-inch (M5, 2025) Wi-Fi + Cellular
+        case iPad17_4 = "iPad17,4"
         
         /// model name
         func modelName() -> String {
@@ -663,6 +671,10 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPhone 17"
             case .iPhone18_4:
                 return "iPhone Air"
+            case .iPad17_1, .iPad17_2:
+                return "iPad Pro (M5) (11-inch)"
+            case .iPad17_3, .iPad17_4:
+                return "iPad Pro (M5) (13-inch)"
             }
         }
         
@@ -768,6 +780,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 17 Pro/17 Pro Max, iPhone Aie
             case .iPhone18_4, .iPhone18_2, .iPhone18_1:
                 return "Apple A19 Pro"
+            /// iPad Pro (M5)
+            case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
+                return "Apple M5"
             }
         }
         
@@ -895,8 +910,12 @@ public class UIDeviceHardware: DeviceHardware {
             case .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4, .iPhone17_5:
                 return "4.05GHz 6-core"
             /// iPhone 17, iPhone 17 Pro/17 Pro Max, iPhone Air
+            /// Apple A19, Apple A19 Pro
             case .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4:
                 return "4.26GHz 6-core"
+            /// iPad Pro (M5)
+            case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
+                return "4.43GHz 10-core"
             }
         }
         
@@ -1030,7 +1049,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A19 Pro
             case .iPhone18_1, .iPhone18_2:
                 return "6-core"
-            
+            /// iPad Pro (M5)
+            case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
+                return "10-core"
             }
         }
         
@@ -1098,6 +1119,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 17, iPhone 17 Pro/17 Pro Max, iPhone Air
             /// Apple A19, Apple A19 Pro
             case .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4:
+                return "16-core"
+            /// iPad Pro (M5)
+            case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
                 return "16-core"
             /// Other device
             default:
