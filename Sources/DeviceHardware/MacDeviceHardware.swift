@@ -364,7 +364,7 @@ public class MacDeviceHardware: DeviceHardware {
            
            // MARK: MacBook Pro
            case .Mac17_2:
-               return "MacBook Pro (14-inch, 2025)" 
+               return "MacBook Pro (14-inch, 2025)"
            case .Mac16_1, .Mac16_6, .Mac16_8:
                return "MacBook Pro (14-inch, 2024)"
            case .Mac16_7, .Mac16_5:
@@ -700,10 +700,9 @@ public extension MacDeviceHardware {
             /// M4 Pro, M4 Max
             case .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_15:
                 return "4.51GHz \(core)-core"
-            // TODO: M5 (Mac17,2) のクロック周波数が判明したら正しい値に修正してください
             /// M5
             case .Mac17_2:
-                return "4.8GHz \(core)-core" // 仮の値
+                return "4.61GHz \(core)-core"
             default:
                 return nil
             }
