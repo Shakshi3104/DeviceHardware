@@ -190,6 +190,8 @@ public class MacDeviceHardware: DeviceHardware {
         case MacPro6_1 = "MacPro6,1"
 
         // MARK: Mac mini
+        /// Mac mini (2024)
+        case Mac16_11 = "Mac16,11"
         /// Mac mini (2024) / M4
         case Mac16_10 = "Mac16,10"
         /// Mac mini (2024) / M4 Pro
@@ -254,6 +256,10 @@ public class MacDeviceHardware: DeviceHardware {
         case iMac13_1 = "iMac13,1"
         
         // MARK: Mac Studio
+        /// Mac Studio (2025) / M3 Ultra
+        case Mac15_14 = "Mac15,14"
+        /// Mac Studio (2025) / M4 Max
+        case Mac16_9 = "Mac16,9"
         /// Mac Studio (2023) / M2 Max
         case Mac14_13 = "Mac14,13"
         /// Mac Studio (2023) / M2 Ultra
@@ -294,8 +300,11 @@ public class MacDeviceHardware: DeviceHardware {
            /// M3, M3 Pro, M3 Max
            case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11, .Mac15_12, .Mac15_13:
                return "16-core"
+           /// M3 Ultra
+           case .Mac15_14:
+               return "32-core"
            /// M4, M4 Pro, M4 Max
-           case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_15, .Mac16_12, .Mac16_13:
+           case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_9, .Mac16_10, .Mac16_11, .Mac16_15, .Mac16_12, .Mac16_13:
                return "16-core"
            /// M5, M5 Pro, M5 Max
            case .Mac17_2, .Mac17_3, .Mac17_4, .Mac17_6, .Mac17_7, .Mac17_8, .Mac17_9:
@@ -435,7 +444,7 @@ public class MacDeviceHardware: DeviceHardware {
                return "Mac Pro (Late 2013)"
                
            // MARK: Mac mini
-           case .Mac16_15, .Mac16_10:
+           case .Mac16_15, .Mac16_10, .Mac16_11:
                return "Mac mini (2024)"
            case .Mac14_3, .Mac14_12:
                return "Mac mini (2023)"
@@ -494,6 +503,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "iMac (21.5-inch, Late 2012)"
                
            // MARK: Mac Studio
+           case .Mac15_14, .Mac16_9:
+               return "Mac Studio (2025)"
            case .Mac14_13, .Mac14_14:
                return "Mac Studio (2023)"
            case .Mac13_1, .Mac13_2:
@@ -696,13 +707,13 @@ public extension MacDeviceHardware {
             case .Mac14_2, .Mac14_7, .Mac14_3, .Mac14_15, .Mac14_5, .Mac14_6, .Mac14_9, .Mac14_10, .Mac14_12, .Mac14_13, .Mac14_14, .Mac14_8:
                 return "3.49GHz \(core)-core"
             /// M3 family
-            case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11, .Mac15_12, .Mac15_13:
+            case .Mac15_3, .Mac15_4, .Mac15_5, .Mac15_6, .Mac15_7, .Mac15_8, .Mac15_9, .Mac15_10, .Mac15_11, .Mac15_12, .Mac15_13, .Mac15_14:
                 return "4.05GHz \(core)-core"
             /// M4
             case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_10, .Mac16_12, .Mac16_13:
                 return "4.4GHz \(core)-core"
             /// M4 Pro, M4 Max
-            case .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_15:
+            case .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_9, .Mac16_11, .Mac16_15:
                 return "4.51GHz \(core)-core"
             /// M5
             case .Mac17_2, .Mac17_3, .Mac17_4:

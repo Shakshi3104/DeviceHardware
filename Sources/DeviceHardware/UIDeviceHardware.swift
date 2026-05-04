@@ -294,6 +294,8 @@ public class UIDeviceHardware: DeviceHardware {
         // MARK: iPad
         /// iPad
         case iPad1_1 = "iPad1,1"
+        /// iPad Wi-Fi + 3G
+        case iPad1_2 = "iPad1,2"
         /// iPad 2
         case iPad2_1 = "iPad2,1"
         /// iPad 2 GSM
@@ -573,7 +575,7 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPhone 12 Pro"
             case .iPhone13_4:
                 return "iPhone 12 Pro Max"
-            case .iPad1_1:
+            case .iPad1_1, .iPad1_2:
                 return "iPad (1st generation)"
             case .iPad2_1, .iPad2_4, .iPad2_2, .iPad2_3:
                 return "iPad 2"
@@ -731,7 +733,7 @@ public class UIDeviceHardware: DeviceHardware {
             case .iPod3_1:
                 return "APL2298"
             /// iPhone 4, iPad (1st), iPod touch (4th)
-            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1:
+            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1, .iPad1_2:
                 return "Apple A4"
             /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
             case .iPhone4_1, .iPod5_1, .iPad2_5, .iPad2_6, .iPad2_7, .iPad2_1, .iPad2_2, .iPad2_3, .iPad2_4:
@@ -844,7 +846,7 @@ public class UIDeviceHardware: DeviceHardware {
                 return "800MHz 1-core"
             /// iPhone 4, iPad (1st), iPod touch (4th)
             /// Apple A4
-            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1:
+            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1, .iPad1_2:
                 return "1.0GHz 1-core"
             /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
             /// Apple A5
@@ -987,7 +989,7 @@ public class UIDeviceHardware: DeviceHardware {
             case .iPod3_1:
                 return "PowerVR SGX535"
             /// iPhone 4, iPad (1st), iPod touch (4th)
-            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1:
+            case .iPod4_1, .iPhone3_1, .iPhone3_2, .iPhone3_3, .iPad1_1, .iPad1_2:
                 return "PowerVR SGX535"
             /// iPhone 4s, iPad 2, iPod touch (5th), iPad mini (1st)
             case .iPhone4_1, .iPod5_1, .iPad2_5, .iPad2_6, .iPad2_7, .iPad2_1, .iPad2_2, .iPad2_3, .iPad2_4:
