@@ -49,6 +49,10 @@ public class MacDeviceHardware: DeviceHardware {
     // MARK: - Model Identifier
     enum ModelIdentifier: String {
         // MARK: MacBook Air
+        /// MacBook Air (13-inch, M5, 2026)
+        case Mac17_3 = "Mac17,3"
+        /// MacBook Air (15-inch, M5, 2026)
+        case Mac17_4 = "Mac17,4"
         /// MacBook Air (13-inch, M4, 2025)
         case Mac16_12 = "Mac16,12"
         /// MacBook Air (15-inch, M4, 2025)
@@ -79,6 +83,14 @@ public class MacDeviceHardware: DeviceHardware {
         case MacBookAir6_1 = "MacBookAir6,1"
 
         // MARK: MacBook Pro
+        /// MacBook Pro (14-inch, 2026) / M5 Pro
+        case Mac17_9 = "Mac17,9"
+        /// MacBook Pro (14-inch, 2026) / M5 Max
+        case Mac17_7 = "Mac17,7"
+        /// MacBook Pro (16-inch, 2026) / M5 Pro
+        case Mac17_8 = "Mac17,8"
+        /// MacBook Pro (16-inch, 2026) / M5 Max
+        case Mac17_6 = "Mac17,6"
         /// MacBook Pro (M5, 2025)  // 2025年10月発売モデル
         case Mac17_2 = "Mac17,2"
         /// MacBook Pro (14-inch, 2024) / M4
@@ -157,6 +169,10 @@ public class MacDeviceHardware: DeviceHardware {
         /// MacBook Pro (Retina, 13-inch, Mid 2014), MacBook Pro (Retina, 13-inch, Late 2013)
         case MacBookPro11_1 = "MacBookPro11,1"
         
+        // MARK: MacBook
+        /// MacBook (2026) / A18 Pro
+        case Mac17_5 = "Mac17,5"
+
         // MARK: MacBook (12-inch)
         /// MacBook (Retina, 12-inch, 2017)
         case MacBook10_1 = "MacBook10,1"
@@ -281,8 +297,11 @@ public class MacDeviceHardware: DeviceHardware {
            /// M4, M4 Pro, M4 Max
            case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_10, .Mac16_15, .Mac16_12, .Mac16_13:
                return "16-core"
-           /// M5
-           case .Mac17_2:
+           /// M5, M5 Pro, M5 Max
+           case .Mac17_2, .Mac17_3, .Mac17_4, .Mac17_6, .Mac17_7, .Mac17_8, .Mac17_9:
+               return "16-core"
+           /// A18 Pro (MacBook Neo)
+           case .Mac17_5:
                return "16-core"
            default:
                return "None"
@@ -293,6 +312,10 @@ public class MacDeviceHardware: DeviceHardware {
        func modelName() -> String {
            switch self {
            // MARK: MacBook Air
+           case .Mac17_3:
+               return "MacBook Air (13-inch, M5, 2026)"
+           case .Mac17_4:
+               return "MacBook Air (15-inch, M5, 2026)"
            case .Mac16_12:
                return "MacBook Air (13-inch, M4, 2025)"
            case .Mac16_13:
@@ -326,6 +349,10 @@ public class MacDeviceHardware: DeviceHardware {
                return "MacBook Air (11-inch, Early 2014) / (11-inch, Mid 2013)"
            
            // MARK: MacBook Pro
+           case .Mac17_7, .Mac17_9:
+               return "MacBook Pro (14-inch, 2026)"
+           case .Mac17_6, .Mac17_8:
+               return "MacBook Pro (16-inch, 2026)"
            case .Mac17_2:
                return "MacBook Pro (14-inch, 2025)"
            case .Mac16_1, .Mac16_6, .Mac16_8:
@@ -387,6 +414,10 @@ public class MacDeviceHardware: DeviceHardware {
                /// Need some decision processing
                return "MacBook Pro (Retina, 13-inch, Mid 2014) / (Retina, 13-inch, Late 2013)"
                
+           // MARK: MacBook
+           case .Mac17_5:
+               return "MacBook Neo"
+
            // MARK: MacBook (12-inch)
            case .MacBook10_1:
                return "MacBook (Retina, 12-inch, 2017)"
@@ -674,8 +705,14 @@ public extension MacDeviceHardware {
             case .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_15:
                 return "4.51GHz \(core)-core"
             /// M5
-            case .Mac17_2:
+            case .Mac17_2, .Mac17_3, .Mac17_4:
                 return "4.61GHz \(core)-core"
+            /// M5 Pro, M5 Max
+            case .Mac17_6, .Mac17_7, .Mac17_8, .Mac17_9:
+                return "4.61GHz \(core)-core"
+            /// A18 Pro (MacBook Neo)
+            case .Mac17_5:
+                return "4.05GHz \(core)-core"
             default:
                 return nil
             }
