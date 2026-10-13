@@ -290,6 +290,12 @@ public class UIDeviceHardware: DeviceHardware {
         case iPhone18_4 = "iPhone18,4"
         /// iPhone 17e
         case iPhone18_5 = "iPhone18,5"
+        /// iPhone 18 Pro
+        case iPhone19_2 = "iPhone19,2"
+        /// iPhone 18 Pro Max
+        case iPhone19_3 = "iPhone19,3"
+        /// iPhone 18 Pro Max (Global)
+        case iPhone19_7 = "iPhone19,7"
         
         // MARK: iPad
         /// iPad
@@ -701,6 +707,10 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPhone Air"
             case .iPhone18_5:
                 return "iPhone 17e"
+            case .iPhone19_2:
+                return "iPhone 18 Pro"
+            case .iPhone19_3, .iPhone19_7:
+                return "iPhone 18 Pro Max"
             case .iPad16_8, .iPad16_9:
                 return "iPad Air (M4) (11-inch)"
             case .iPad16_10, .iPad16_11:
@@ -817,6 +827,9 @@ public class UIDeviceHardware: DeviceHardware {
             /// iPhone 17 Pro/17 Pro Max, iPhone Aie
             case .iPhone18_4, .iPhone18_2, .iPhone18_1:
                 return "Apple A19 Pro"
+            /// iPhone 18 Pro/18 Pro Max
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7:
+                return "Apple A20 Pro"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
                 return "Apple M5"
@@ -962,6 +975,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A19, Apple A19 Pro
             case .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4, .iPhone18_5:
                 return "4.26GHz 6-core"
+            /// iPhone 18 Pro/18 Pro Max
+            /// Apple A20 Pro
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7:
+                return "4.93GHz 6-core"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
                 return "4.43GHz 10-core"
@@ -1110,6 +1127,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A19 Pro
             case .iPhone18_1, .iPhone18_2:
                 return "6-core"
+            /// iPhone 18 Pro/18 Pro Max
+            /// Apple A20 Pro
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7:
+                return "7-core"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
                 return "10-core"
@@ -1185,6 +1206,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A19, Apple A19 Pro
             case .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4, .iPhone18_5:
                 return "16-core"
+            /// iPhone 18 Pro/18 Pro Max
+            /// Apple A20 Pro (dual 16-core)
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7:
+                return "32-core"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
                 return "16-core"
@@ -1198,11 +1223,12 @@ public class UIDeviceHardware: DeviceHardware {
         // Dynamic Island
         func hasDynamicIsland() -> Bool {
             switch self {
-            // 14 Pro/Pro Max, 15/15 Plus, 15 Pro/Pro Max, 16/16 Plus, 16 Pro/16 Pro Max, 17, 17 Pro/17 Pro Max, Air
+            // 14 Pro/Pro Max, 15/15 Plus, 15 Pro/Pro Max, 16/16 Plus, 16 Pro/16 Pro Max, 17, 17 Pro/17 Pro Max, Air, 18 Pro/18 Pro Max
             case .iPhone15_2, .iPhone15_3, .iPhone15_4, .iPhone15_5,
                     .iPhone16_1, .iPhone16_2,
                     .iPhone17_1, .iPhone17_2, .iPhone17_3, .iPhone17_4,
-                    .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4:
+                    .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4,
+                    .iPhone19_2, .iPhone19_3, .iPhone19_7:
                 return true
             default:
                 return false
