@@ -484,6 +484,9 @@ public class UIDeviceHardware: DeviceHardware {
         case iPad16_5 = "iPad16,5"
         /// iPad Pro 13-inch M4 Wi-Fi + Cellular
         case iPad16_6 = "iPad16,6"
+        /// iPad mini (A20 Pro)
+        case iPad19_1 = "iPad19,1"
+        case iPad19_2 = "iPad19,2"
         /// iPad mini (A17 Pro)
         case iPad16_1 = "iPad16,1"
         case iPad16_2 = "iPad16,2"
@@ -695,6 +698,8 @@ public class UIDeviceHardware: DeviceHardware {
                 return "iPhone 16 Pro"
             case .iPhone17_2:
                 return "iPhone 16 Pro Max"
+            case .iPad19_1, .iPad19_2:
+                return "iPad mini (A20 Pro)"
             case .iPad16_1, .iPad16_2:
                 return "iPad mini (A17 Pro)"
             case .iPhone17_5:
@@ -832,7 +837,7 @@ public class UIDeviceHardware: DeviceHardware {
             case .iPhone18_4, .iPhone18_2, .iPhone18_1:
                 return "Apple A19 Pro"
             /// iPhone 18 Pro/18 Pro Max, iPhone Duo
-            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4:
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4, .iPad19_1, .iPad19_2:
                 return "Apple A20 Pro"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
@@ -979,9 +984,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A19, Apple A19 Pro
             case .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4, .iPhone18_5:
                 return "4.26GHz 6-core"
-            /// iPhone 18 Pro/18 Pro Max, iPhone Duo
+            /// iPhone 18 Pro/18 Pro Max, iPhone Duo, iPad mini (A20 Pro)
             /// Apple A20 Pro
-            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4:
+            /// iPad mini (A20 Pro) 128GB/256GB is 5-core; 512GB is 6-core (same identifier)
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4, .iPad19_1, .iPad19_2:
                 return "4.93GHz 6-core"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
@@ -1133,7 +1139,7 @@ public class UIDeviceHardware: DeviceHardware {
                 return "6-core"
             /// iPhone 18 Pro/18 Pro Max, iPhone Duo
             /// Apple A20 Pro
-            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4:
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4, .iPad19_1, .iPad19_2:
                 return "7-core"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
@@ -1210,9 +1216,10 @@ public class UIDeviceHardware: DeviceHardware {
             /// Apple A19, Apple A19 Pro
             case .iPhone18_1, .iPhone18_2, .iPhone18_3, .iPhone18_4, .iPhone18_5:
                 return "16-core"
-            /// iPhone 18 Pro/18 Pro Max, iPhone Duo
+            /// iPhone 18 Pro/18 Pro Max, iPhone Duo, iPad mini (A20 Pro)
             /// Apple A20 Pro (dual 16-core)
-            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4:
+            /// iPad mini (A20 Pro) 128GB/256GB is 16-core; 512GB is dual 16-core (same identifier)
+            case .iPhone19_2, .iPhone19_3, .iPhone19_7, .iPhone19_4, .iPad19_1, .iPad19_2:
                 return "32-core"
             /// iPad Pro (M5)
             case .iPad17_1, .iPad17_2, .iPad17_3, .iPad17_4:
