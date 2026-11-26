@@ -83,6 +83,16 @@ public class MacDeviceHardware: DeviceHardware {
         case MacBookAir6_1 = "MacBookAir6,1"
 
         // MARK: MacBook Pro
+        /// MacBook Pro (14-inch, 2026) / M6
+        case Mac18_1 = "Mac18,1"
+        /// MacBook Pro (14-inch PROLED XDR, 2026) / M5 Pro
+        case Mac17_13 = "Mac17,13"
+        /// MacBook Pro (14-inch PROLED XDR, 2026) / M5 Max
+        case Mac17_11 = "Mac17,11"
+        /// MacBook Pro (16-inch PROLED XDR, 2026) / M5 Pro
+        case Mac17_12 = "Mac17,12"
+        /// MacBook Pro (16-inch PROLED XDR, 2026) / M5 Max
+        case Mac17_10 = "Mac17,10"
         /// MacBook Pro (14-inch, 2026) / M5 Pro
         case Mac17_9 = "Mac17,9"
         /// MacBook Pro (14-inch, 2026) / M5 Max
@@ -216,6 +226,8 @@ public class MacDeviceHardware: DeviceHardware {
         case iMacPro1_1 = "iMacPro1,1"
 
         // MARK: iMac
+        /// iMac (24-inch, 2026) / M6
+        case Mac18_2 = "Mac18,2"
         /// iMac (24-inch, 2024, Two ports)
         case Mac16_2 = "Mac16,2"
         /// iMac (24-inch, 2024, Four ports)
@@ -315,13 +327,13 @@ public class MacDeviceHardware: DeviceHardware {
            case .Mac16_1, .Mac16_2, .Mac16_3, .Mac16_5, .Mac16_6, .Mac16_7, .Mac16_8, .Mac16_9, .Mac16_10, .Mac16_11, .Mac16_15, .Mac16_12, .Mac16_13:
                return "16-core"
            /// M5, M5 Pro, M5 Max
-           case .Mac17_2, .Mac17_3, .Mac17_4, .Mac17_6, .Mac17_7, .Mac17_8, .Mac17_9, .Mac17_14, .Mac17_16:
+           case .Mac17_2, .Mac17_3, .Mac17_4, .Mac17_6, .Mac17_7, .Mac17_8, .Mac17_9, .Mac17_10, .Mac17_11, .Mac17_12, .Mac17_13, .Mac17_14, .Mac17_16:
                return "16-core"
            /// M5 Ultra
            case .Mac17_15:
                return "32-core"
            /// M6 (dual 16-core)
-           case .Mac18_5:
+           case .Mac18_5, .Mac18_1, .Mac18_2:
                return "32-core"
            /// A18 Pro (MacBook Neo)
            case .Mac17_5:
@@ -372,7 +384,11 @@ public class MacDeviceHardware: DeviceHardware {
                return "MacBook Air (11-inch, Early 2014) / (11-inch, Mid 2013)"
            
            // MARK: MacBook Pro
-           case .Mac17_7, .Mac17_9:
+           case .Mac17_11, .Mac17_13:
+               return "MacBook Pro (14-inch PROLED XDR, 2026)"
+           case .Mac17_10, .Mac17_12:
+               return "MacBook Pro (16-inch PROLED XDR, 2026)"
+           case .Mac18_1, .Mac17_7, .Mac17_9:
                return "MacBook Pro (14-inch, 2026)"
            case .Mac17_6, .Mac17_8:
                return "MacBook Pro (16-inch, 2026)"
@@ -476,6 +492,8 @@ public class MacDeviceHardware: DeviceHardware {
                return "iMac Pro (2017)"
                
            // MARK: iMac
+           case .Mac18_2:
+               return "iMac (24-inch, 2026)"
            case .Mac16_2:
                return "iMac (24-inch, 2024, Two ports)"
            case .Mac16_3:
@@ -737,10 +755,10 @@ public extension MacDeviceHardware {
             case .Mac17_2, .Mac17_3, .Mac17_4:
                 return "4.61GHz \(core)-core"
             /// M5 Pro, M5 Max, M5 Ultra
-            case .Mac17_6, .Mac17_7, .Mac17_8, .Mac17_9, .Mac17_14, .Mac17_15, .Mac17_16:
+            case .Mac17_6, .Mac17_7, .Mac17_8, .Mac17_9, .Mac17_10, .Mac17_11, .Mac17_12, .Mac17_13, .Mac17_14, .Mac17_15, .Mac17_16:
                 return "4.61GHz \(core)-core"
             /// M6
-            case .Mac18_5:
+            case .Mac18_5, .Mac18_1, .Mac18_2:
                 return "4.79GHz \(core)-core"
             /// A18 Pro (MacBook Neo)
             case .Mac17_5:
